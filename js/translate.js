@@ -3,10 +3,13 @@
    portugués. El script de Google solo se descarga cuando alguien elige un
    idioma distinto al español (o si ya lo había elegido en una visita anterior).
 
-   La traducción se activa fijando la cookie "googtrans" y recargando la
-   página: el widget la lee al iniciar y traduce el contenido automáticamente.
-   (Disparar un evento "change" sintético en el <select> oculto del widget
-   ya no es confiable: Google lo ignora en la mayoría de los casos.) */
+   La cookie "googtrans" por sí sola ya no alcanza para que el widget
+   traduzca automáticamente (Google cambió este comportamiento). Además de
+   fijarla, una vez que el widget termina de inicializar buscamos su
+   <select class="goog-te-combo"> oculto, le ponemos el idioma destino y
+   disparamos un evento "change" real — hay que esperarlo con reintentos
+   porque Google lo inyecta de forma asíncrona (carga un script propio
+   adicional) y puede tardar unos segundos en aparecer. */
 (function(){
   const STORAGE_KEY = 'pozoazul_lang';
   const SUPPORTED = ['es', 'en', 'de', 'fr', 'pt'];
@@ -55,13 +58,35 @@
     }
   }
 
-  function loadWidget(){
+  // busca el <select> que el widget de Google inyecta dentro de
+  // #google_translate_element y lo acciona a mano; reintenta porque
+  // aparece de forma asíncrona, bastante después de que corre
+  // googleTranslateElementInit
+  function triggerGoogleTranslateSelect(lang, attemptsLeft){
+    if(attemptsLeft === undefined) attemptsLeft = 40; // ~10s de reintentos
+    const combo = document.querySelector('#google_translate_element select.goog-te-combo');
+    if(combo){
+      if(combo.value !== lang){
+        combo.value = lang;
+        combo.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      return;
+    }
+    if(attemptsLeft <= 0){
+      console.warn('[PozoAzul] El selector de Google Translate nunca apareció; la traducción pudo no activarse.');
+      return;
+    }
+    setTimeout(() => triggerGoogleTranslateSelect(lang, attemptsLeft - 1), 250);
+  }
+
+  function loadWidget(lang){
     window.googleTranslateElementInit = function(){
       new google.translate.TranslateElement({
         pageLanguage: 'es',
         includedLanguages: 'en,de,fr,pt',
         autoDisplay: false
       }, 'google_translate_element');
+      triggerGoogleTranslateSelect(lang);
     };
     const s = document.createElement('script');
     s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
@@ -94,6 +119,6 @@
   if(current !== 'es'){
     if(current === 'en') applyEnglishOverrides();
     setTranslateCookie(current);
-    loadWidget();
+    loadWidget(current);
   }
 })();
