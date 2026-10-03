@@ -10,6 +10,10 @@
 <meta property="og:title" content="Cascadas Pozo Azul — Cabins & Day Passes in Colonia Toro Amarillo">
 <meta property="og:description" content="Cascadas Pozo Azul is a tropical forest spot where the river carves out turquoise pools. It offers fully equipped cabins, a camping area, and day passes for the whole family. Here, you will find the area's tallest waterfall, boasting a 155-meter drop.">
 <link rel="icon" type="image/jpeg" href="imagenes/Logo.jpeg">
+<!-- posters del hero: primera imagen visible de la página, se piden
+     antes que cualquier otra cosa para que aparezcan de inmediato -->
+<link rel="preload" as="image" href="hero/VideoHeroPoster.jpg" media="(min-width: 769px)" fetchpriority="high">
+<link rel="preload" as="image" href="hero/HeroMovilPoster.jpg" media="(max-width: 768px)" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -21,7 +25,7 @@
 <nav class="nav" id="nav">
   <div class="container">
     <a href="#inicio" class="brand">
-      <img src="imagenes/Logo-icon.jpeg" alt="">
+      <img src="imagenes/Logo-icon.jpeg" alt="" fetchpriority="high">
       <span translate="no">Cascadas Pozo Azul</span>
     </a>
     <div class="navlinks">
@@ -247,7 +251,7 @@
     <div class="footer-grid">
       <div>
         <div class="footer-brand">
-          <img src="imagenes/Logo-icon.jpeg" alt="">
+          <img src="imagenes/Logo-icon.jpeg" alt="" fetchpriority="high">
           <span translate="no">Cascadas Pozo Azul</span>
         </div>
         <p style="max-width:34ch;">Turismo natural en Colonia Toro Amarillo, San Carlos, Alajuela. Cabañas, zona de camping y entradas de día junto al río.</p>

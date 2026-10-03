@@ -201,7 +201,7 @@ function renderCabins(){
   grid.innerHTML = CONFIG.cabins.map(cabin => {
     const slides = cabin.images.map((img,i) => `
       <div class="cabin-slide ${i===0?'active':''}" data-slide="${i}">
-        <img src="${img.src}" alt="${img.alt}">
+        <img src="${img.src}" alt="${img.alt}" fetchpriority="high">
       </div>`).join('');
     const dots = cabin.images.map((_,i) => `<button data-dot="${i}" class="${i===0?'active':''}" aria-label="Foto ${i+1}"></button>`).join('');
 
@@ -666,6 +666,7 @@ function createGalleryMedia(item){
       const img = document.createElement('img');
       img.alt = item.alt;
       img.decoding = 'async';
+      img.fetchPriority = 'high';
       const finish = () => resolve({ el: img, ratio: (img.naturalWidth && img.naturalHeight) ? img.naturalWidth / img.naturalHeight : 0.75 });
       img.addEventListener('load', finish, { once:true });
       img.addEventListener('error', finish, { once:true });
