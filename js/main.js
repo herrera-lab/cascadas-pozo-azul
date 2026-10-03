@@ -665,7 +665,6 @@ function createGalleryMedia(item){
     } else {
       const img = document.createElement('img');
       img.alt = item.alt;
-      img.loading = 'lazy';
       img.decoding = 'async';
       const finish = () => resolve({ el: img, ratio: (img.naturalWidth && img.naturalHeight) ? img.naturalWidth / img.naturalHeight : 0.75 });
       img.addEventListener('load', finish, { once:true });
