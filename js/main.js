@@ -12,10 +12,10 @@ const CONFIG = {
       perPersonPrice: 15000,
       amenities: ['wifi','view','hotwater','parking','kitchen'],
       images: [
-        { src: 'imagenes/cabañaGuaria/1.jpeg', alt: 'Vista exterior de la Cabaña Guaria Morada' },
-        { src: 'imagenes/cabañaGuaria/2.jpeg', alt: 'Cabañas Heliconia y Guaria Morada' },
-        { src: 'imagenes/cabañaGuaria/3.jpeg', alt: 'Balcón con vista panorámica' },
-        { src: 'imagenes/cabañaGuaria/4.jpeg', alt: 'Interior con cocina equipada y dormitorio' }
+        { src: 'imagenes/cabañaGuaria/1.webp', alt: 'Vista exterior de la Cabaña Guaria Morada' },
+        { src: 'imagenes/cabañaGuaria/2.webp', alt: 'Cabañas Heliconia y Guaria Morada' },
+        { src: 'imagenes/cabañaGuaria/3.webp', alt: 'Balcón con vista panorámica' },
+        { src: 'imagenes/cabañaGuaria/4.webp', alt: 'Interior con cocina equipada y dormitorio' }
       ]
     },
     {
@@ -27,12 +27,12 @@ const CONFIG = {
       perPersonPrice: 15000,
       amenities: ['wifi','view','hotwater','parking','kitchen'],
       images: [
-        { src: 'imagenes/cabañaHeliconia/1.jpeg', alt: 'Vista exterior de la Cabaña Heliconia' },
-        { src: 'imagenes/cabañaHeliconia/2.jpeg', alt: 'Cocina equipada' },
-        { src: 'imagenes/cabañaHeliconia/3.jpeg', alt: 'Dormitorio con camarote' },
-        { src: 'imagenes/cabañaHeliconia/4.jpeg', alt: 'Baño privado' },
-        { src: 'imagenes/cabañaHeliconia/5.jpeg', alt: 'Camas y camarote' },
-        { src: 'imagenes/cabañaHeliconia/6.jpeg', alt: 'Sala, cocina y entrada' }
+        { src: 'imagenes/cabañaHeliconia/1.webp', alt: 'Vista exterior de la Cabaña Heliconia' },
+        { src: 'imagenes/cabañaHeliconia/2.webp', alt: 'Cocina equipada' },
+        { src: 'imagenes/cabañaHeliconia/3.webp', alt: 'Dormitorio con camarote' },
+        { src: 'imagenes/cabañaHeliconia/4.webp', alt: 'Baño privado' },
+        { src: 'imagenes/cabañaHeliconia/5.webp', alt: 'Camas y camarote' },
+        { src: 'imagenes/cabañaHeliconia/6.webp', alt: 'Sala, cocina y entrada' }
       ]
     }
   ],
@@ -574,34 +574,34 @@ Incluye: ${pkg.includes.join(', ')}
 }
 
 const GALLERY_ITEMS = [
-  { src: 'imagenes/galeria/17.jpeg', alt: 'Desayuno con vista a la zona de camping y juegos' },
-  { type: 'video', src: 'imagenes/galeria/v1.mp4', poster: 'imagenes/galeria/v1poster.jpg', alt: 'Video: llegada a la catarata' },
-  { src: 'imagenes/galeria/9.jpeg', alt: 'Poza turquesa al pie de la cascada' },
-  { src: 'imagenes/galeria/3.jpeg', alt: 'Catarata Caída de Nieve y Paz' },
-  { src: 'imagenes/galeria/18.jpeg', alt: 'Pescado entero frito con papas fritas' },
-  { src: 'imagenes/galeria/8.jpeg', alt: 'Rótulo de entrada a la cascada y poza azul' },
-  { type: 'video', src: 'imagenes/galeria/v2.mp4', poster: 'imagenes/galeria/v2poster.jpg', alt: 'Video: cruce del río en la canasta aérea' },
-  { src: 'imagenes/galeria/16.jpeg', alt: 'Cabañas Heliconia y Guaria Morada' },
-  { src: 'imagenes/galeria/13.jpeg', alt: 'Vista aérea de la catarata principal' },
-  { src: 'imagenes/galeria/19.jpeg', alt: 'Almuerzo típico con carne en salsa' },
-  { type: 'video', src: 'imagenes/galeria/v4.mp4', poster: 'imagenes/galeria/v4poster.jpg', alt: 'Video: poza turquesa' },
-  { src: 'imagenes/galeria/1.jpeg', alt: 'Vista del volcán desde la entrada' },
-  { src: 'imagenes/galeria/11.jpeg', alt: 'Vista de la catarata en día despejado' },
-  { type: 'video', src: 'imagenes/galeria/v7.mp4', poster: 'imagenes/galeria/v7poster.jpg', alt: 'Video: un día en Cascadas Pozo Azul' },
-  { src: 'imagenes/galeria/14.jpeg', alt: 'Cascada doble con poza natural' },
-  { src: 'imagenes/galeria/20.jpeg', alt: 'Filete de pescado frito con patacones' },
-  { src: 'imagenes/galeria/6.jpeg', alt: 'Cruce del río en canasta aérea' },
-  { src: 'imagenes/galeria/10.jpeg', alt: 'Rancho con mesas y vista panorámica' },
-  { type: 'video', src: 'imagenes/galeria/v6.mp4', poster: 'imagenes/galeria/v6poster.jpg', alt: 'Video: recorrido por Cascadas Pozo Azul' },
-  { src: 'imagenes/galeria/4.jpeg', alt: 'Sendero de escaleras en el bosque' },
-  { src: 'imagenes/galeria/21.jpeg', alt: 'Plato típico con pollo en salsa y plátanos maduros' },
-  { src: 'imagenes/galeria/15.jpeg', alt: 'Zona de juegos, piscina y jardines' },
-  { src: 'imagenes/galeria/2.jpeg', alt: 'Almuerzo típico (casado) con vista al valle' },
-  { type: 'video', src: 'imagenes/galeria/v5.mp4', poster: 'imagenes/galeria/v5poster.jpg', alt: 'Video: sendero del bosque' },
-  { src: 'imagenes/galeria/7.jpeg', alt: 'Canasta aérea sobre el río' },
-  { src: 'imagenes/galeria/5.jpeg', alt: 'Entrada al sendero de la catarata' },
-  { type: 'video', src: 'imagenes/galeria/v3.mp4', poster: 'imagenes/galeria/v3poster.jpg', alt: 'Video: caída de agua de la catarata' },
-  { src: 'imagenes/galeria/12.jpeg', alt: 'Vista aérea de la cascada entre el bosque' }
+  { src: 'imagenes/galeria/17.webp', alt: 'Desayuno con vista a la zona de camping y juegos' },
+  { type: 'video', src: 'imagenes/galeria/v1.mp4', poster: 'imagenes/galeria/v1poster.webp', alt: 'Video: llegada a la catarata' },
+  { src: 'imagenes/galeria/9.webp', alt: 'Poza turquesa al pie de la cascada' },
+  { src: 'imagenes/galeria/3.webp', alt: 'Catarata Caída de Nieve y Paz' },
+  { src: 'imagenes/galeria/18.webp', alt: 'Pescado entero frito con papas fritas' },
+  { src: 'imagenes/galeria/8.webp', alt: 'Rótulo de entrada a la cascada y poza azul' },
+  { type: 'video', src: 'imagenes/galeria/v2.mp4', poster: 'imagenes/galeria/v2poster.webp', alt: 'Video: cruce del río en la canasta aérea' },
+  { src: 'imagenes/galeria/16.webp', alt: 'Cabañas Heliconia y Guaria Morada' },
+  { src: 'imagenes/galeria/13.webp', alt: 'Vista aérea de la catarata principal' },
+  { src: 'imagenes/galeria/19.webp', alt: 'Almuerzo típico con carne en salsa' },
+  { type: 'video', src: 'imagenes/galeria/v4.mp4', poster: 'imagenes/galeria/v4poster.webp', alt: 'Video: poza turquesa' },
+  { src: 'imagenes/galeria/1.webp', alt: 'Vista del volcán desde la entrada' },
+  { src: 'imagenes/galeria/11.webp', alt: 'Vista de la catarata en día despejado' },
+  { type: 'video', src: 'imagenes/galeria/v7.mp4', poster: 'imagenes/galeria/v7poster.webp', alt: 'Video: un día en Cascadas Pozo Azul' },
+  { src: 'imagenes/galeria/14.webp', alt: 'Cascada doble con poza natural' },
+  { src: 'imagenes/galeria/20.webp', alt: 'Filete de pescado frito con patacones' },
+  { src: 'imagenes/galeria/6.webp', alt: 'Cruce del río en canasta aérea' },
+  { src: 'imagenes/galeria/10.webp', alt: 'Rancho con mesas y vista panorámica' },
+  { type: 'video', src: 'imagenes/galeria/v6.mp4', poster: 'imagenes/galeria/v6poster.webp', alt: 'Video: recorrido por Cascadas Pozo Azul' },
+  { src: 'imagenes/galeria/4.webp', alt: 'Sendero de escaleras en el bosque' },
+  { src: 'imagenes/galeria/21.webp', alt: 'Plato típico con pollo en salsa y plátanos maduros' },
+  { src: 'imagenes/galeria/15.webp', alt: 'Zona de juegos, piscina y jardines' },
+  { src: 'imagenes/galeria/2.webp', alt: 'Almuerzo típico (casado) con vista al valle' },
+  { type: 'video', src: 'imagenes/galeria/v5.mp4', poster: 'imagenes/galeria/v5poster.webp', alt: 'Video: sendero del bosque' },
+  { src: 'imagenes/galeria/7.webp', alt: 'Canasta aérea sobre el río' },
+  { src: 'imagenes/galeria/5.webp', alt: 'Entrada al sendero de la catarata' },
+  { type: 'video', src: 'imagenes/galeria/v3.mp4', poster: 'imagenes/galeria/v3poster.webp', alt: 'Video: caída de agua de la catarata' },
+  { src: 'imagenes/galeria/12.webp', alt: 'Vista aérea de la cascada entre el bosque' }
 ];
 function galleryLayoutConfig(){
   const w = window.innerWidth;
