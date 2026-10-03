@@ -1,5 +1,10 @@
 /* ============ TOKENS ============ */
 :root{
+  /* el sitio es solo claro: sin esto, Safari/Chrome dibujan los controles
+     nativos (texto e ícono de <input type=date>, etc.) con colores de modo
+     oscuro si el sistema operativo lo tiene activado, y quedan invisibles
+     contra nuestros fondos claros */
+  color-scheme: light;
   --forest:#0F3D2E;
   --forest-dark:#0A2A20;
   --turquoise:#16B4C6;
@@ -340,6 +345,7 @@ section{padding:96px 0;}
 .field input[type=date], .field input[type=number]{
   border:1.5px solid var(--sand-deep);border-radius:var(--radius-sm);padding:11px 13px;font-size:.92rem;
   background:var(--sand);color:var(--ink);transition:border-color .2s;width:100%;
+  color-scheme:light;
 }
 .field input:focus{border-color:var(--turquoise);outline:none;}
 .field.has-error input{border-color:var(--error);}
