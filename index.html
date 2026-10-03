@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cascadas Pozo Azul — Cabañas y entradas en Colonia Toro Amarillo</title>
+<meta name="description" content="Cabañas, zona de camping, entradas y paquetes con alimentación en Cascadas Pozo Azul, Colonia Toro Amarillo, San Carlos, Alajuela, Costa Rica. Abierto de 7:30 a.m. a 5:00 p.m.">
+<meta property="og:locale" content="es_CR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:title" content="Cascadas Pozo Azul — Cabins & Day Passes in Colonia Toro Amarillo">
+<meta property="og:description" content="Cascadas Pozo Azul is a tropical forest spot where the river carves out turquoise pools. It offers fully equipped cabins, a camping area, and day passes for the whole family. Here, you will find the area's tallest waterfall, boasting a 155-meter drop.">
+<link rel="icon" type="image/jpeg" href="imagenes/Logo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="#inicio" class="brand">
+      <img src="imagenes/Logo-icon.jpeg" alt="">
+      <span translate="no">Cascadas Pozo Azul</span>
+    </a>
+    <div class="navlinks">
+      <a href="#cabanas">Cabañas</a>
+      <a href="#entradas">Entradas</a>
+      <a href="#paquetes">Paquetes</a>
+      <a href="#galeria">Galería</a>
+      <a href="#ubicacion">Ubicación</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-switch" translate="no">
+        <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 3.9 5.7 3.9 9s-1.3 6.3-3.9 9c-2.6-2.7-3.9-5.7-3.9-9S9.4 5.7 12 3z"/></svg>
+        <select id="langSelect" class="lang-select" aria-label="Idioma / Language">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="pt">Português</option>
+        </select>
+        <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <a href="#cabanas" class="btn btn-primary btn-nav-cta">Reservar ahora</a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-head">
+      <span class="mobile-menu-title" translate="no">Cascadas Pozo Azul</span>
+      <button type="button" class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">&times;</button>
+    </div>
+    <nav class="mobile-menu-links">
+      <a href="#cabanas">Cabañas</a>
+      <a href="#entradas">Entradas</a>
+      <a href="#paquetes">Paquetes</a>
+      <a href="#galeria">Galería</a>
+      <a href="#ubicacion">Ubicación</a>
+    </nav>
+    <a href="#cabanas" class="btn btn-primary mobile-menu-cta">Reservar ahora</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="inicio">
+  <video class="hero-photo" muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true">
+    <source src="hero/HeroMovil.mp4" type="video/mp4">
+  </video>
+  <video class="hero-video" muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true">
+    <source src="hero/VideoHero.mp4" type="video/mp4">
+  </video>
+  <div class="container hero-location">
+    <p class="eyebrow hero-eyebrow-desktop" translate="no">Colonia Toro Amarillo · San Carlos · Alajuela</p>
+    <p class="eyebrow hero-eyebrow-mobile" translate="no">Toro Amarillo · San Carlos</p>
+  </div>
+  <div class="container hero-content reveal" id="heroContent">
+    <h1>Aguas turquesa,<br><em>selva viva</em> y calma real.</h1>
+    <p id="heroLead">Aquí encontrás la catarata más alta de la zona, con 155m de caída.</p>
+    <div class="hero-ctas">
+      <a href="#cabanas" class="btn btn-primary">Reservar ahora</a>
+      <a href="#entradas" class="btn btn-outline">Comprar entradas de día</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Desliza</span><div class="drop"></div></div>
+</header>
+
+<!-- ============ CABAÑAS ============ -->
+<section id="cabanas">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Hospedaje</p>
+      <h2>Duerme junto al sonido del río</h2>
+      <p>Dos cabañas independientes, pensadas para desconectarse. Elegí fechas, tarifa y reservá en segundos. <strong>Todos los precios incluyen la entrada.</strong></p>
+    </div>
+    <div class="cabins-grid" id="cabinsGrid"></div>
+
+    <div class="camping-band reveal">
+      <div class="camping-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 20h19"/><path d="M12 4 4.5 20"/><path d="M12 4l7.5 16"/><path d="M12 11.5 8.5 20"/><path d="M12 11.5 15.5 20"/><path d="M12 4V2.5"/></svg>
+      </div>
+      <div class="camping-copy">
+        <h3>Zona de camping</h3>
+        <p>Traé tu propia tienda y dormí bajo el bosque, a pasos de las pozas.</p>
+      </div>
+      <div class="camping-price">
+        <b>₡8.000</b>
+        <a href="#" class="btn btn-wood" id="campingWaBtn">Consultar por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider"><svg viewBox="0 0 1200 40" preserveAspectRatio="none" width="100%" height="40"><path d="M0 20 Q150 0 300 20 T600 20 T900 20 T1200 20"/></svg></div>
+
+<!-- ============ ENTRADAS ============ -->
+<section id="entradas">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Visita de día</p>
+      <h2>Entrada de día completo</h2>
+      <p>Acceso a las cascadas y pozas naturales. Ideal si no te vas a hospedar y querés disfrutar el lugar por el día.</p>
+    </div>
+    <div class="ticket-card reveal">
+      <div class="ticket-info">
+        <h3>Entrada general</h3>
+        <p>Válida todo el día, de 7:30 a.m. a 5:00 p.m.</p>
+        <div class="ticket-price-list">
+          <div><span>Adulto</span><strong id="priceAdultLabel"></strong></div>
+          <div><span>Niño</span><strong id="priceChildLabel"></strong></div>
+        </div>
+        <div class="ticket-includes">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Acceso a las cascadas y pozas naturales</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>La entrada ya viene incluida en el precio de las cabañas</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>¿Querés desayuno o almuerzo? Mirá los <a href="#paquetes" style="text-decoration:underline;">paquetes</a></span>
+        </div>
+      </div>
+      <div class="ticket-form">
+        <div class="field" style="margin-bottom:14px;">
+          <label for="ticketDate">Fecha de visita</label>
+          <input type="date" id="ticketDate">
+          <p class="field-error" id="ticketDateError"></p>
+        </div>
+        <div class="stepper" style="margin-bottom:10px;">
+          <div class="stepper-label">Adultos<small id="stepperAdultPrice"></small></div>
+          <div class="stepper-controls">
+            <button type="button" data-stepper="ticketAdults" data-dir="-1" aria-label="Restar adulto">–</button>
+            <output id="ticketAdults">1</output>
+            <button type="button" data-stepper="ticketAdults" data-dir="1" aria-label="Sumar adulto">+</button>
+          </div>
+        </div>
+        <div class="stepper" style="margin-bottom:16px;">
+          <div class="stepper-label">Niños<small id="stepperChildPrice"></small></div>
+          <div class="stepper-controls">
+            <button type="button" data-stepper="ticketChildren" data-dir="-1" aria-label="Restar niño">–</button>
+            <output id="ticketChildren">0</output>
+            <button type="button" data-stepper="ticketChildren" data-dir="1" aria-label="Sumar niño">+</button>
+          </div>
+        </div>
+        <div class="summary-box" style="margin-bottom:16px;">
+          <div class="total"><b id="ticketTotalCRC">₡0</b><span id="ticketTotalUSD">o $0 USD</span></div>
+          <div class="summary-note">Precio calculado al instante</div>
+        </div>
+        <button class="whatsapp-btn" id="ticketWaBtn" disabled>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a8 8 0 0 1-4.08-1.12l-.29-.17-3.02.79.8-2.94-.19-.3A7.94 7.94 0 0 1 4 12a8 8 0 1 1 8 8zm4.4-5.9c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.55.12-.16.24-.63.78-.77.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
+          Comprar por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAQUETES ============ -->
+<section id="paquetes">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Entrada + alimentación</p>
+      <h2>Paquetes con comida</h2>
+      <p>Sumá desayuno, almuerzo o ambos a tu entrada del día. Coordinalos por WhatsApp con anticipación. <strong>Los paquetes aplican únicamente los fines de semana (sábados y domingos) y los días feriados.</strong></p>
+    </div>
+    <div class="packages-grid" id="packagesGrid"></div>
+  </div>
+</section>
+
+<div class="wave-divider"><svg viewBox="0 0 1200 40" preserveAspectRatio="none" width="100%" height="40"><path d="M0 20 Q150 40 300 20 T600 20 T900 20 T1200 20"/></svg></div>
+
+<!-- ============ GALERÍA ============ -->
+<section id="galeria">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Galería</p>
+      <h2>Así se siente Pozo Azul</h2>
+      <p>Fotos y videos reales de las cascadas, las cabañas y el bosque que rodea Pozo Azul.</p>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- ============ UBICACIÓN ============ -->
+<section id="ubicacion">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Cómo llegar</p>
+      <h2>Ubicación y contacto</h2>
+      <p>Estamos en Colonia Toro Amarillo, San Carlos, Alajuela — a un viaje escénico desde La Fortuna y Ciudad Quesada.</p>
+    </div>
+    <div class="location-grid reveal">
+      <iframe class="map-frame" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+        src="https://www.google.com/maps?q=Cascada+Pozo+Azul,+Colonia+Toro+Amarillo,+San+Carlos&t=h&z=17&output=embed"
+        allowfullscreen title="Mapa de ubicación de Cascadas Pozo Azul"></iframe>
+      <div class="contact-card">
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>
+          <div><b>Dirección</b><span>Colonia Toro Amarillo, San Carlos, Alajuela, Costa Rica</span></div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8.1 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.9 2.2z"/></svg>
+          <div><b>WhatsApp / Teléfono</b><span id="contactPhoneLabel">+506 0000-0000</span></div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+          <div><b>Correo</b><span><a href="mailto:pozoazulcascadas@gmail.com">pozoazulcascadas@gmail.com</a></span></div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <div><b>Horario</b><span>Todos los días, 7:30 a.m. – 5:00 p.m.</span></div>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <div><b>Reservas</b><span>Cabañas, camping y paquetes se confirman por WhatsApp.</span></div>
+        </div>
+        <a href="#" class="btn btn-primary" id="contactWaBtn" style="width:100%;">Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="imagenes/Logo-icon.jpeg" alt="">
+          <span translate="no">Cascadas Pozo Azul</span>
+        </div>
+        <p style="max-width:34ch;">Turismo natural en Colonia Toro Amarillo, San Carlos, Alajuela. Cabañas, zona de camping y entradas de día junto al río.</p>
+        <div class="social-row">
+          <a href="https://www.facebook.com/CascadasPozoAzulColoniaToroAmarillo" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1z"/></svg></a>
+          <a href="https://www.tiktok.com/@cascadapozoazul" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg></a>
+          <a href="mailto:pozoazulcascadas@gmail.com" aria-label="Correo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
+          <a href="#" id="footerWaBtn" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Explorar</h5>
+        <a href="#cabanas">Cabañas y camping</a>
+        <a href="#entradas">Entradas de día</a>
+        <a href="#paquetes">Paquetes con comida</a>
+        <a href="#galeria">Galería</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <p id="footerPhoneLabel">WhatsApp: +506 8328-4646</p>
+        <p><a href="mailto:pozoazulcascadas@gmail.com">pozoazulcascadas@gmail.com</a></p>
+        <p>Colonia Toro Amarillo, San Carlos, Alajuela</p>
+        <p>Horario: 7:30 a.m. – 5:00 p.m., todos los días</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> <span translate="no">Cascadas Pozo Azul</span>. Todos los derechos reservados.</span>
+      <span>Precios sujetos a cambio sin previo aviso.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="float-wa" id="floatWaBtn" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a8 8 0 0 1-4.08-1.12l-.29-.17-3.02.79.8-2.94-.19-.3A7.94 7.94 0 0 1 4 12a8 8 0 1 1 8 8zm4.4-5.9c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.55.12-.16.24-.63.78-.77.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
+</a>
+
+<!-- ============ ACCESIBILIDAD ============ -->
+<button type="button" class="float-a11y" id="a11yToggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="a11yPanel" aria-label="Opciones de accesibilidad">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="4.2" r="1.9"/>
+    <path d="M4.5 8.3c2.3.9 5 1.4 7.5 1.4s5.2-.5 7.5-1.4"/>
+    <path d="M12 9.7v3.3"/>
+    <path d="M8.3 21.2 12 13l3.7 8.2"/>
+    <path d="M7.3 15.8h9.4"/>
+  </svg>
+</button>
+
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-modal="false" aria-labelledby="a11yPanelTitle" hidden>
+  <div class="a11y-panel-head">
+    <h2 id="a11yPanelTitle">Accesibilidad</h2>
+    <button type="button" class="a11y-close" id="a11yClose" aria-label="Cerrar panel de accesibilidad">&times;</button>
+  </div>
+
+  <div class="a11y-group">
+    <span class="a11y-label">Tamaño del texto</span>
+    <div class="a11y-stepper">
+      <button type="button" data-a11y-fontstep="-1" aria-label="Reducir tamaño del texto">A−</button>
+      <button type="button" data-a11y-fontreset aria-label="Restablecer tamaño del texto">A</button>
+      <button type="button" data-a11y-fontstep="1" aria-label="Aumentar tamaño del texto">A+</button>
+    </div>
+  </div>
+
+  <div class="a11y-group a11y-toggles">
+    <button type="button" class="a11y-toggle" data-a11y-toggle="contrast" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+      Alto contraste
+    </button>
+    <button type="button" class="a11y-toggle" data-a11y-toggle="grayscale" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" stroke-dasharray="2 2"/></svg>
+      Escala de grises
+    </button>
+    <button type="button" class="a11y-toggle" data-a11y-toggle="underline-links" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 4v7a6 6 0 0 0 12 0V4"/><path d="M4 20h16"/></svg>
+      Subrayar enlaces
+    </button>
+    <button type="button" class="a11y-toggle" data-a11y-toggle="readable-font" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 20 10 5h1l5 15"/><path d="M6.6 15h7.8"/><path d="M17 9h3v11h-3z"/></svg>
+      Fuente legible
+    </button>
+    <button type="button" class="a11y-toggle" data-a11y-toggle="spacing" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+      Más espaciado
+    </button>
+    <button type="button" class="a11y-toggle" data-a11y-toggle="pause-anim" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      Pausar animaciones
+    </button>
+    <button type="button" class="a11y-toggle" data-a11y-toggle="big-cursor" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 3 6.5 15.5 2-6 6-2z"/></svg>
+      Cursor grande
+    </button>
+  </div>
+
+  <button type="button" class="a11y-reset" id="a11yReset">Restablecer todo</button>
+</div>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">&times;</button>
+    <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="lightbox-frame" id="lightboxFrame">
+      <img id="lightboxImg" src="" alt="">
+      <video id="lightboxVideo" controls muted playsinline style="display:none"></video>
+      <small id="lightboxLabel">Foto 1</small>
+    </div>
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+    <button class="lightbox-nav next" id="lightboxNext" aria-label="Siguiente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<div id="google_translate_element"></div>
+
+<script src="js/translate.js"></script>
+<script src="js/main.js"></script>
+<script src="js/accessibility.js"></script>
+</body>
+</html>
