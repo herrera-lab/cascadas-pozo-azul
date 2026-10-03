@@ -101,7 +101,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.08;let
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   padding:13px 26px;border-radius:999px;font-weight:700;font-size:.92rem;
   transition:transform .25s ease, box-shadow .25s ease, background .25s ease, opacity .2s ease;
-  white-space:nowrap;
+  min-width:0;max-width:100%;text-align:center;
 }
 .btn-primary{background:var(--turquoise);color:var(--forest-dark);box-shadow:0 10px 24px -10px rgba(22,180,198,.7);}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px -10px rgba(22,180,198,.8);}
@@ -319,8 +319,19 @@ section{padding:96px 0;}
 .field label{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);}
 .field input[type=date], .field input[type=number]{
   border:1.5px solid var(--sand-deep);border-radius:var(--radius-sm);padding:11px 13px;font-size:.92rem;
-  background:var(--sand);color:var(--ink);transition:border-color .2s;width:100%;
+  background:var(--sand);color:var(--ink);-webkit-text-fill-color:var(--ink);transition:border-color .2s;width:100%;
   color-scheme:light;
+}
+.field input[type=date]::-webkit-datetime-edit,
+.field input[type=date]::-webkit-datetime-edit-fields-wrapper,
+.field input[type=date]::-webkit-datetime-edit-text,
+.field input[type=date]::-webkit-datetime-edit-day-field,
+.field input[type=date]::-webkit-datetime-edit-month-field,
+.field input[type=date]::-webkit-datetime-edit-year-field{
+  color:var(--ink);-webkit-text-fill-color:var(--ink);opacity:1;
+}
+.field input[type=date]::-webkit-calendar-picker-indicator{
+  filter:none;opacity:.7;
 }
 .field input:focus{border-color:var(--turquoise);outline:none;}
 .field.has-error input{border-color:var(--error);}
@@ -341,7 +352,7 @@ section{padding:96px 0;}
 .availability-note.show{display:block;}
 .availability-note.warn{background:#FBE6DF;color:var(--error);}
 .availability-note.ok{background:#DFF5E6;color:#1E6B3A;}
-.whatsapp-btn{display:inline-flex;align-items:center;gap:10px;background:#22B356;color:var(--white);padding:14px 22px;border-radius:999px;font-weight:700;width:100%;justify-content:center;transition:transform .2s ease, box-shadow .2s ease, opacity .2s;box-shadow:0 12px 26px -12px rgba(34,179,86,.7);}
+.whatsapp-btn{display:inline-flex;align-items:center;gap:10px;background:#22B356;color:var(--white);padding:14px 22px;border-radius:999px;font-weight:700;width:100%;min-width:0;justify-content:center;text-align:center;transition:transform .2s ease, box-shadow .2s ease, opacity .2s;box-shadow:0 12px 26px -12px rgba(34,179,86,.7);}
 .whatsapp-btn:hover{transform:translateY(-2px);}
 .whatsapp-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none;}
 .whatsapp-btn svg{width:19px;height:19px;}
