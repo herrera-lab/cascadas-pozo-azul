@@ -145,7 +145,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.08;let
 
 /* panel deslizable anclado a la derecha */
 .mobile-menu{
-  position:fixed;top:0;right:0;bottom:0;z-index:900;
+  position:fixed;top:0;right:0;bottom:0;z-index:960;
   width:min(300px, 80vw);
   display:flex;flex-direction:column;
   background:var(--forest-dark);
