@@ -55,22 +55,26 @@
       </button>
     </div>
   </div>
-  <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-head">
-      <span class="mobile-menu-title" translate="no">Cascadas Pozo Azul</span>
-      <button type="button" class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">&times;</button>
-    </div>
-    <nav class="mobile-menu-links">
-      <a href="#cabanas">Cabañas</a>
-      <a href="#entradas">Entradas</a>
-      <a href="#paquetes">Paquetes</a>
-      <a href="#galeria">Galería</a>
-      <a href="#ubicacion">Ubicación</a>
-    </nav>
-    <a href="#cabanas" class="btn btn-primary mobile-menu-cta">Reservar ahora</a>
-  </div>
 </nav>
+<!-- fuera del <nav> a propósito: si quedan adentro, el backdrop-filter que
+     .nav.scrolled aplica al hacer scroll los vuelve el contenedor de
+     referencia de estos elementos position:fixed, y el panel pierde su
+     tamaño/fondo correcto -->
+<div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-head">
+    <span class="mobile-menu-title" translate="no">Cascadas Pozo Azul</span>
+    <button type="button" class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">&times;</button>
+  </div>
+  <nav class="mobile-menu-links">
+    <a href="#cabanas">Cabañas</a>
+    <a href="#entradas">Entradas</a>
+    <a href="#paquetes">Paquetes</a>
+    <a href="#galeria">Galería</a>
+    <a href="#ubicacion">Ubicación</a>
+  </nav>
+  <a href="#cabanas" class="btn btn-primary mobile-menu-cta">Reservar ahora</a>
+</div>
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="inicio">
