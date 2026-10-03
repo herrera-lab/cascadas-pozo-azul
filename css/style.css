@@ -101,7 +101,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.08;let
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   padding:13px 26px;border-radius:999px;font-weight:700;font-size:.92rem;
   transition:transform .25s ease, box-shadow .25s ease, background .25s ease, opacity .2s ease;
-  min-width:0;max-width:100%;text-align:center;
+  min-width:0;max-width:100%;text-align:center;overflow-wrap:anywhere;
 }
 .btn-primary{background:var(--turquoise);color:var(--forest-dark);box-shadow:0 10px 24px -10px rgba(22,180,198,.7);}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px -10px rgba(22,180,198,.8);}
@@ -359,7 +359,7 @@ section{padding:96px 0;}
 .availability-note.show{display:block;}
 .availability-note.warn{background:#FBE6DF;color:var(--error);}
 .availability-note.ok{background:#DFF5E6;color:#1E6B3A;}
-.whatsapp-btn{display:inline-flex;align-items:center;gap:10px;background:#22B356;color:var(--white);padding:14px 22px;border-radius:999px;font-weight:700;width:100%;min-width:0;justify-content:center;text-align:center;transition:transform .2s ease, box-shadow .2s ease, opacity .2s;box-shadow:0 12px 26px -12px rgba(34,179,86,.7);}
+.whatsapp-btn{display:inline-flex;align-items:center;gap:10px;background:#22B356;color:var(--white);padding:14px 22px;border-radius:999px;font-weight:700;width:100%;min-width:0;max-width:100%;justify-content:center;text-align:center;overflow-wrap:anywhere;transition:transform .2s ease, box-shadow .2s ease, opacity .2s;box-shadow:0 12px 26px -12px rgba(34,179,86,.7);}
 .whatsapp-btn:hover{transform:translateY(-2px);}
 .whatsapp-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none;}
 .whatsapp-btn svg{width:19px;height:19px;}
@@ -398,6 +398,7 @@ section{padding:96px 0;}
 .rate-toggle button{
   padding:10px 8px;border-radius:var(--radius-sm);font-size:.82rem;font-weight:700;line-height:1.25;
   color:var(--ink-soft);transition:background .2s, color .2s, box-shadow .2s;
+  min-width:0;max-width:100%;overflow-wrap:anywhere;
 }
 .rate-toggle button small{display:block;font-weight:500;font-size:.72rem;opacity:.85;}
 .rate-toggle button.active{background:var(--white);color:var(--forest);box-shadow:var(--shadow-soft);}
@@ -531,6 +532,7 @@ footer{background:var(--forest-dark);color:rgba(255,255,255,.82);padding:64px 0 
   display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:12px 10px;
   border-radius:var(--radius-sm);background:var(--sand);font-size:.82rem;font-weight:600;color:var(--ink);
   text-align:left;transition:background .2s,color .2s;
+  min-width:0;max-width:100%;overflow-wrap:anywhere;
 }
 .a11y-toggle svg{width:20px;height:20px;color:var(--turquoise-deep);}
 .a11y-toggle:hover{background:var(--sand-deep);}
