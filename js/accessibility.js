@@ -1,9 +1,3 @@
-/* ============================================================
-   Panel de accesibilidad — botón flotante con controles de
-   tamaño de texto, contraste, escala de grises, fuente legible,
-   espaciado, pausa de animaciones/video y cursor grande.
-   Las preferencias se guardan en localStorage por dispositivo.
-   ============================================================ */
 (function(){
   const STORAGE_KEY = 'pozoazul_a11y';
   const html = document.documentElement;

@@ -1,9 +1,4 @@
- /* ============================================================
-   CONFIGURACIÓN — DATOS REALES DE CASCADAS POZO AZUL
-   Editar aquí si cambian precios, horario o número de WhatsApp.
-   ============================================================ */
 const CONFIG = {
-  // Número en formato internacional, SIN "+" ni espacios
   whatsappNumber: '50683284646',
   phoneDisplay: '+506 8328-4646',
   schedule: '7:30 a.m. – 5:00 p.m.',
@@ -42,7 +37,6 @@ const CONFIG = {
     }
   ],
   camping: { price: 8000 },
-  // Precios de entrada en colones y su equivalente publicado en dólares
   tickets: {
     adult: { crc: 5000, usd: 12 },
     child: { crc: 4000, usd: 11 }
@@ -68,18 +62,12 @@ const PACKAGE_ICONS = {
   full:   '<path d="M6 3v8a2 2 0 0 0 4 0V3M8 11v10"/><path d="M16 3c-1.5 1.5-2 3-2 5s.7 3 2 3v10"/>'
 };
 
-/* ============================================================
-   HELPERS
-   ============================================================ */
 const $ = (sel, ctx=document) => ctx.querySelector(sel);
 const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
 
 function keepHeroVideoPlaying(selector, skipIfQuery){
   const video = $(selector);
   if(!video) return;
-  // el video de escritorio no se reproduce (ni se descarga) en móvil, y
-  // viceversa con el de móvil en escritorio — cada uno queda inactivo
-  // fuera de su rango de pantalla
   if(skipIfQuery && window.matchMedia(skipIfQuery).matches) return;
 
   let retryTimer;
@@ -122,10 +110,6 @@ function formatCRC(n){ return '₡' + Math.round(n).toLocaleString('es-CR'); }
 function formatUSD(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
 function todayStr(){ const d = new Date(); return d.toISOString().split('T')[0]; }
 function parseDate(str){ return new Date(str + 'T00:00:00'); }
-// Las fechas que vienen de la API pueden llegar como "2026-09-12" o como
-// "2026-09-12T06:00:00.000Z" (Google Sheets serializa sus celdas de fecha
-// como datetime ISO). Nos quedamos solo con la parte YYYY-MM-DD para poder
-// compararlas de forma consistente con las fechas que elige el usuario.
 function apiDateOnly(str){ return (str || '').split('T')[0]; }
 function nightsBetween(inS, outS){
   if(!inS || !outS) return 0;
@@ -136,20 +120,12 @@ function waLink(message){
   return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
-/* ============================================================
-   DISPONIBILIDAD — API real (Google Apps Script + Google Sheets)
-   Reemplaza el localStorage de antes: ahora la disponibilidad se
-   consulta y se registra en la hoja de cálculo real del negocio.
-   ============================================================ */
 const BOOKINGS_API_URL = 'https://script.google.com/macros/s/AKfycby36Ml0BqiO6nG9-nQ2YkI29uKSSGj_T7TNCo4fLgIPy2nTWuiKU3KR1nIx43Bnmnr-/exec';
 
 if(location.protocol === 'file:'){
   console.warn('[PozoAzul] Estás abriendo el sitio como archivo local (file://). Los navegadores bloquean fetch() hacia URLs remotas desde file://, así que la consulta de disponibilidad NUNCA va a llegar a script.google.com. Serví esta carpeta con un servidor local (por ejemplo la extensión "Live Server" de VS Code, o "npx serve") y abrí el sitio como http://localhost/... en vez de doble clic al archivo.');
 }
 
-// Trae el estado real de reservas desde la hoja de cálculo.
-// Lanza un error si la conexión falla, para que quien la llame pueda
-// mostrar un aviso y evitar que alguien reserve sin disponibilidad verificada.
 async function getBookings(){
   try{
     const res = await fetch(BOOKINGS_API_URL, { method: 'GET', cache: 'no-store' });
@@ -161,10 +137,6 @@ async function getBookings(){
   }
 }
 
-// Registra una reserva de cabaña como fila nueva en la hoja.
-// entry: { cabin_id, checkin, checkout, guests }
-// Content-Type text/plain evita que el navegador dispare un preflight
-// OPTIONS (Apps Script no lo responde y el POST fallaría por CORS).
 async function saveBookings(entry){
   const body = JSON.stringify({ type: 'cabin', ...entry });
   try{
@@ -184,16 +156,12 @@ function rangesOverlap(aStart, aEnd, bStart, bEnd){
   return parseDate(aStart) < parseDate(bEnd) && parseDate(bStart) < parseDate(aEnd);
 }
 
-/* ============================================================
-   RENDER: CABIN CARDS
-   ============================================================ */
 function amenityChip(key){
   const meta = AMENITY_META[key];
   if(!meta) return '';
   return `<div class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${meta.icon}</svg>${meta.label}</div>`;
 }
 
-/* modo de tarifa activo por cabaña: 'pareja' | 'persona' */
 const CABIN_RATE_MODE = {};
 
 function renderCabins(){
@@ -274,7 +242,6 @@ function renderCabins(){
     </article>`;
   }).join('');
 
-  // gallery interactions
   $$('.cabin-gallery').forEach(gal => {
     let idx = 0;
     const slides = $$('.cabin-slide', gal);
@@ -288,7 +255,6 @@ function renderCabins(){
     dots.forEach((d,n) => d.addEventListener('click', () => show(n)));
   });
 
-  // toggle booking panel
   $$('[data-toggle]').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.dataset.toggle;
@@ -300,7 +266,6 @@ function renderCabins(){
     });
   });
 
-  // selector de tarifa (pareja / por persona) + steppers de huéspedes
   CONFIG.cabins.forEach(cabin => {
     const out = $('#guests-' + cabin.id);
     const stepperBtns = $$(`[data-stepper="guests-${cabin.id}"]`);
@@ -315,7 +280,6 @@ function renderCabins(){
     });
 
     CABIN_RATE_MODE[cabin.id] = 'pareja';
-    // en tarifa de pareja el número de huéspedes queda fijo en 2
     stepperBtns.forEach(b => b.disabled = true);
 
     $$(`[data-rate="${cabin.id}"]`).forEach(btn => {
@@ -337,20 +301,16 @@ function renderCabins(){
     });
   });
 
-  // date inputs
   $$('[data-cabin-input]').forEach(input => {
     input.min = todayStr();
     input.addEventListener('change', () => updateCabinCalc(input.getAttribute('data-cabin-input')));
   });
 
-  // whatsapp buttons
   CONFIG.cabins.forEach(cabin => {
     $('#wa-' + cabin.id).addEventListener('click', () => confirmCabinBooking(cabin.id));
   });
 }
 
-/* evita que una respuesta vieja "pise" a una más nueva si el usuario
-   cambia las fechas mientras el fetch anterior todavía está en camino */
 const CABIN_CALC_TOKEN = {};
 
 async function updateCabinCalc(cabinId){
@@ -370,7 +330,6 @@ async function updateCabinCalc(cabinId){
   availNote.classList.remove('show','warn','ok');
   waBtn.disabled = true;
 
-  // checkout min = day after checkin
   if(checkin){
     const minOut = new Date(parseDate(checkin).getTime() + 86400000).toISOString().split('T')[0];
     checkoutInput.min = minOut;
@@ -393,7 +352,6 @@ async function updateCabinCalc(cabinId){
     return;
   }
 
-  // consulta de disponibilidad real contra la hoja de cálculo
   availNote.textContent = '⏳ Consultando disponibilidad...';
   availNote.classList.add('show');
 
@@ -404,12 +362,12 @@ async function updateCabinCalc(cabinId){
     bookings = await getBookings();
   }catch(err){
     console.error('[PozoAzul] updateCabinCalc: la consulta de disponibilidad falló:', err);
-    if(CABIN_CALC_TOKEN[cabinId] !== token) return; // ya hay una consulta más nueva en curso
+    if(CABIN_CALC_TOKEN[cabinId] !== token) return;
     availNote.textContent = '⚠️ No se pudo verificar disponibilidad. Revisá tu conexión e intentá de nuevo, o escribinos directo por WhatsApp.';
     availNote.classList.add('warn');
     return;
   }
-  if(CABIN_CALC_TOKEN[cabinId] !== token) return; // el usuario ya cambió las fechas
+  if(CABIN_CALC_TOKEN[cabinId] !== token) return;
 
   const existing = (bookings.cabins && bookings.cabins[cabinId]) || [];
   const overlap = existing.find(b => rangesOverlap(checkin, checkout, apiDateOnly(b.checkin), apiDateOnly(b.checkout)));
@@ -422,7 +380,6 @@ async function updateCabinCalc(cabinId){
     availNote.classList.add('ok');
   }
 
-  // tarifa: pareja (precio fijo por noche) o por persona
   const mode = CABIN_RATE_MODE[cabinId] || 'pareja';
   const nightPrice = mode === 'pareja'
     ? cabin.couplePrice
@@ -464,11 +421,8 @@ Total estimado: ${formatCRC(total)} (entrada incluida)
 
 Quedo atento/a a la confirmación de disponibilidad y en medio de pago. ¡Gracias!`;
 
-  // abrimos WhatsApp primero (debe ser síncrono con el clic, si no
-  // el navegador puede bloquear la ventana emergente)
   window.open(waLink(message), '_blank', 'noopener');
 
-  // registramos la reserva en la hoja de cálculo para bloquear estas fechas
   waBtn.disabled = true;
   try{
     await saveBookings({ cabin_id: cabinId, checkin, checkout, guests: parseInt(guests) });
@@ -494,9 +448,6 @@ function clearFieldError(fieldId){
   $('.field-error', field).textContent = '';
 }
 
-/* ============================================================
-   TICKETS (entradas de día)
-   ============================================================ */
 function initTickets(){
   const T = CONFIG.tickets;
   $('#priceAdultLabel').textContent = `${formatCRC(T.adult.crc)} / ${formatUSD(T.adult.usd)}`;
@@ -566,9 +517,6 @@ Quedo atento/a a la confirmación. ¡Gracias!`;
   calc();
 }
 
-/* ============================================================
-   PAQUETES (entrada + alimentación)
-   ============================================================ */
 function renderPackages(){
   const grid = $('#packagesGrid');
   grid.innerHTML = CONFIG.packages.map(pkg => `
@@ -601,11 +549,6 @@ Incluye: ${pkg.includes.join(', ')}
   });
 }
 
-/* ============================================================
-   GALERÍA + LIGHTBOX
-   ============================================================ */
-/* orden curado a propósito: fotos y videos intercalados en un masonry
-   compacto — cada uno se ve en su proporción real, sin recortes. */
 const GALLERY_ITEMS = [
   { src: 'imagenes/galeria/17.jpeg', alt: 'Desayuno con vista a la zona de camping y juegos' },
   { type: 'video', src: 'imagenes/galeria/v1.mp4', alt: 'Video: llegada a la catarata' },
@@ -636,11 +579,6 @@ const GALLERY_ITEMS = [
   { type: 'video', src: 'imagenes/galeria/v3.mp4', alt: 'Video: caída de agua de la catarata' },
   { src: 'imagenes/galeria/12.jpeg', alt: 'Vista aérea de la cascada entre el bosque' }
 ];
-/* Arma la galería en filas "justificadas" (como Google Fotos/Flickr): mide
-   la proporción real de cada foto/video y las reparte en filas que ocupan
-   el ancho completo del contenedor, escalando cada fila (sin recortar, solo
-   cambia de tamaño). Como TODAS las filas —incluida la última— llenan el
-   ancho, el final de la galería siempre queda alineado igual que el resto. */
 function galleryLayoutConfig(){
   const w = window.innerWidth;
   if(w >= 1024) return { gap: 12, targetHeight: 260 };
@@ -653,10 +591,6 @@ function createGalleryMedia(item){
   return new Promise(resolve => {
     if(item.type === 'video'){
       const v = document.createElement('video');
-      // sin autoplay/preload=auto: solo se descargan los metadatos acá;
-      // la reproducción real la dispara el IntersectionObserver de abajo
-      // cuando el tile entra en pantalla, para no bajar ~16MB de video de un
-      // solo golpe al cargar la página
       v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'metadata';
       const finish = () => resolve({ el: v, ratio: (v.videoWidth && v.videoHeight) ? v.videoWidth / v.videoHeight : 16/9 });
       v.addEventListener('loadedmetadata', finish, { once:true });
@@ -683,14 +617,12 @@ function layoutGalleryJustified(grid, entries){
   grid.innerHTML = '';
 
   const n = entries.length;
-  const prefix = [0]; // suma acumulada de proporciones
+  const prefix = [0];
   entries.forEach(e => prefix.push(prefix[prefix.length - 1] + e.ratio));
 
-  // alto que tendría una fila formada por las piezas i..j-1 al llenar el ancho
   function rowHeight(i, j){
     return (containerWidth - gap * (j - i - 1)) / (prefix[j] - prefix[i]);
   }
-  // qué tan lejos queda esa fila del alto ideal (las muy altas pesan un poco más)
   function rowCost(i, j){
     const h = rowHeight(i, j);
     if(!(h > 0)) return Infinity;
@@ -698,9 +630,6 @@ function layoutGalleryJustified(grid, entries){
     return dev > 0 ? dev * dev * 1.5 : dev * dev;
   }
 
-  // reparte las piezas (manteniendo su orden) en filas para que TODAS —la
-  // última incluida— queden lo más cerca posible del alto ideal, en vez de que
-  // la última fila salga mucho más alta que el resto
   const best = new Array(n + 1).fill(Infinity);
   const from = new Array(n + 1).fill(0);
   best[0] = 0;
@@ -744,12 +673,8 @@ function renderGallery(){
     layoutGalleryJustified(grid, entries);
     attachGalleryTileHandlers();
 
-    // estos tiles se crearon después del barrido inicial de initReveal(),
-    // así que se suman al mismo observer para que también aparezcan con fade-in
     if(revealObserver) $$('.gallery-tile.reveal', grid).forEach(el => revealObserver.observe(el));
 
-    // los videos de la galería solo se reproducen mientras su tile está
-    // visible (y se pausan al salir de pantalla), para ahorrar datos/batería
     const galleryVideoObserver = new IntersectionObserver(videoEntries => {
       videoEntries.forEach(entry => {
         if(entry.isIntersecting) entry.target.play().catch(() => {});
@@ -759,9 +684,6 @@ function renderGallery(){
     $$('.gallery-tile video', grid).forEach(video => galleryVideoObserver.observe(video));
   });
 
-  // si cambia el ancho de ventana (o gira el celular) hay que recalcular
-  // las filas; reacomodamos los mismos tiles sin recrearlos (así los
-  // videos no se reinician)
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
@@ -782,7 +704,6 @@ function renderGallery(){
   let currentIndex = 0;
   const lightbox = $('#lightbox');
   const lightboxVideo = $('#lightboxVideo');
-  // los videos de la galería nunca llevan sonido, ni aunque intenten activarlo
   lightboxVideo.muted = true;
   lightboxVideo.addEventListener('volumechange', () => {
     if(!lightboxVideo.muted) lightboxVideo.muted = true;
@@ -834,9 +755,6 @@ function renderGallery(){
   });
 }
 
-/* ============================================================
-   NAV, SCROLL REVEAL, WHATSAPP GENERAL LINKS
-   ============================================================ */
 function initNavScroll(){
   const nav = $('#nav');
   window.addEventListener('scroll', () => {
@@ -869,16 +787,11 @@ function initMobileMenu(){
   });
   closeBtn?.addEventListener('click', closeMenu);
   backdrop?.addEventListener('click', closeMenu);
-  // cerrar al tocar un enlace del menú (así se ve el scroll a la sección)
   $$('a', menu).forEach(a => a.addEventListener('click', closeMenu));
-  // cerrar si se agranda la ventana hasta el menú de escritorio
   window.addEventListener('resize', () => { if(window.innerWidth >= 900) closeMenu(); });
   document.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
 }
 
-/* compartido con renderGallery(): sus tiles se crean después (esperan a que
-   carguen las fotos/videos), así que se agregan a este mismo observer
-   cuando ya existen, en vez de perderse por llegar tarde al barrido inicial */
 let revealObserver;
 function initReveal(){
   revealObserver = new IntersectionObserver(entries => {
@@ -914,9 +827,6 @@ Precio: ${formatCRC(CONFIG.camping.price)}
   $('#footerPhoneLabel').textContent = 'WhatsApp: ' + CONFIG.phoneDisplay;
 }
 
-/* ============================================================
-   INIT
-   ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
   $('#year').textContent = new Date().getFullYear();
   renderCabins();
@@ -929,7 +839,6 @@ document.addEventListener('DOMContentLoaded', () => {
   requestAnimationFrame(() => { $('#heroContent').classList.add('in'); });
   initReveal();
 
-  // hero uses its own reveal (not observed since visible on load)
   $('#heroContent').classList.add('reveal');
 
 });

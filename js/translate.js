@@ -1,24 +1,9 @@
-/* Selector de idioma — usa el widget de Google Translate.
-   El español es el idioma original; se ofrecen inglés, alemán, francés y
-   portugués. El script de Google solo se descarga cuando alguien elige un
-   idioma distinto al español (o si ya lo había elegido en una visita anterior).
-
-   La cookie "googtrans" por sí sola ya no alcanza para que el widget
-   traduzca automáticamente (Google cambió este comportamiento). Además de
-   fijarla, una vez que el widget termina de inicializar buscamos su
-   <select class="goog-te-combo"> oculto, le ponemos el idioma destino y
-   disparamos un evento "change" real — hay que esperarlo con reintentos
-   porque Google lo inyecta de forma asíncrona (carga un script propio
-   adicional) y puede tardar unos segundos en aparecer. */
 (function(){
   const STORAGE_KEY = 'pozoazul_lang';
   const SUPPORTED = ['es', 'en', 'de', 'fr', 'pt'];
   const select = document.getElementById('langSelect');
   if(!select) return;
 
-  // Textos fijos que reemplazan la traducción automática de Google cuando
-  // hace falta una redacción exacta en inglés en lugar de la que genera el
-  // widget. La clave es el id del elemento en el HTML.
   const EN_OVERRIDES = {
     heroLead: 'Here you\'ll find the area\'s tallest waterfall, with a 155-meter drop.'
   };
@@ -58,12 +43,8 @@
     }
   }
 
-  // busca el <select> que el widget de Google inyecta dentro de
-  // #google_translate_element y lo acciona a mano; reintenta porque
-  // aparece de forma asíncrona, bastante después de que corre
-  // googleTranslateElementInit
   function triggerGoogleTranslateSelect(lang, attemptsLeft){
-    if(attemptsLeft === undefined) attemptsLeft = 40; // ~10s de reintentos
+    if(attemptsLeft === undefined) attemptsLeft = 40;
     const combo = document.querySelector('#google_translate_element select.goog-te-combo');
     if(combo){
       if(combo.value !== lang){
@@ -109,13 +90,9 @@
     }else{
       setTranslateCookie(lang);
     }
-    // recargar para que el widget lea la cookie desde cero y traduzca (o
-    // deje de traducir) todo el contenido de la página de forma consistente
     location.reload();
   });
 
-  // si ya había un idioma distinto de español guardado, cargar el widget
-  // para que traduzca según la cookie que se fijó en la visita anterior
   if(current !== 'es'){
     if(current === 'en') applyEnglishOverrides();
     setTranslateCookie(current);

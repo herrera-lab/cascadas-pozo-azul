@@ -1,9 +1,4 @@
-/* ============ TOKENS ============ */
 :root{
-  /* el sitio es solo claro: sin esto, Safari/Chrome dibujan los controles
-     nativos (texto e ícono de <input type=date>, etc.) con colores de modo
-     oscuro si el sistema operativo lo tiene activado, y quedan invisibles
-     contra nuestros fondos claros */
   color-scheme: light;
   --forest:#0F3D2E;
   --forest-dark:#0A2A20;
@@ -63,7 +58,6 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.08;let
 }
 :focus-visible{outline:3px solid var(--turquoise-deep); outline-offset:3px; border-radius:6px;}
 
-/* ============ WAVE DIVIDER (signature element) ============ */
 .wave-divider{width:100%;height:auto;display:block;line-height:0;}
 .wave-divider path{
   stroke:var(--turquoise);
@@ -75,14 +69,11 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.08;let
 }
 @keyframes flow{ to{ stroke-dashoffset:-140; } }
 
-/* ============ NAV ============ */
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:950;
   padding:18px 0;
   transition:background .35s ease, box-shadow .35s ease, padding .35s ease;
 }
-/* degradado sutil detrás del nav para que el logo y la hamburguesa se
-   lean siempre, incluso sobre zonas claras de la foto/video de fondo */
 .nav::before{
   content:'';position:absolute;inset:0;z-index:-1;
   background:linear-gradient(180deg, rgba(4,16,12,.55) 0%, transparent 100%);
@@ -124,7 +115,6 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.08;let
 .btn-nav-cta{display:none;}
 @media(min-width:640px){.btn-nav-cta{display:inline-flex;}}
 
-/* ============ MENÚ MÓVIL ============ */
 .nav-toggle{
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
   width:40px;height:40px;flex-shrink:0;color:var(--white);z-index:901;position:relative;
@@ -140,7 +130,6 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.08;let
 .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 @media(min-width:900px){.nav-toggle{display:none;}}
 
-/* fondo oscurecido detrás del panel */
 .mobile-menu-backdrop{
   position:fixed;inset:0;z-index:850;
   background:rgba(4,16,12,.55);backdrop-filter:blur(2px);
@@ -148,7 +137,6 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.08;let
 }
 .mobile-menu-backdrop.open{opacity:1;pointer-events:auto;}
 
-/* panel deslizable anclado a la derecha */
 .mobile-menu{
   position:fixed;top:0;right:0;bottom:0;z-index:960;
   width:min(300px, 80vw);
@@ -182,7 +170,6 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.08;let
 .mobile-menu-cta{margin:auto 22px 24px;}
 @media(min-width:900px){.mobile-menu, .mobile-menu-backdrop{display:none;}}
 
-/* ============ SELECTOR DE IDIOMA ============ */
 .nav-right{display:flex;align-items:center;gap:12px;}
 .lang-switch{position:relative;display:flex;align-items:center;color:var(--white);transition:color .35s ease;}
 .nav.scrolled .lang-switch{color:var(--forest);}
@@ -207,14 +194,12 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.08;let
   .lang-chevron{right:7px;width:11px;height:11px;}
 }
 
-/* Google Translate: oculta la barra superior, tooltips y resaltados que inyecta el widget */
 #google_translate_element{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;}
 body{top:0 !important;}
 iframe.skiptranslate, .goog-te-banner-frame, .VIpgJd-ZVi9od-ORHb-OEVmcd, .VIpgJd-ZVi9od-aZ2wEe-wOHMyf{display:none !important;}
 #goog-gt-tt, .goog-tooltip, .goog-tooltip:hover{display:none !important;}
 .goog-text-highlight{background:none !important;box-shadow:none !important;}
 
-/* ============ HERO ============ */
 .hero{
   position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;
   overflow:hidden;color:var(--white);
@@ -229,8 +214,6 @@ iframe.skiptranslate, .goog-te-banner-frame, .VIpgJd-ZVi9od-ORHb-OEVmcd, .VIpgJd
   z-index:0;
   filter:saturate(1.12) contrast(1.1) brightness(.97);
 }
-/* foto vertical exclusiva para móvil (el video panorámico se oculta ahí,
-   ver media query más abajo, y ni siquiera llega a descargarse) */
 .hero-photo{
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:center;
@@ -250,13 +233,9 @@ iframe.skiptranslate, .goog-te-banner-frame, .VIpgJd-ZVi9od-ORHb-OEVmcd, .VIpgJd
 }
 .hero.video-fallback .hero-video, .hero.video-fallback .hero-photo{display:none;}
 .hero-content{position:relative;z-index:2;padding:150px 0 90px;width:100%;}
-/* la dirección (eyebrow) va arriba del hero, independiente del resto del
-   texto que queda apoyado abajo */
 .hero-location{position:absolute;top:92px;left:0;right:0;z-index:2;}
 .hero-location .eyebrow{color:var(--turquoise-pale);text-shadow:0 2px 10px rgba(0,0,0,.55), 0 1px 3px rgba(0,0,0,.4);}
 .hero-location .eyebrow::before{background:var(--turquoise-pale);}
-/* versión corta (móvil) / completa (escritorio) del eyebrow —
-   se alternan por CSS, ver @media(max-width:768px) más abajo */
 .hero-eyebrow-mobile{display:none;}
 .hero h1{
   font-size:clamp(2.1rem, 5vw, 3.9rem);
@@ -275,7 +254,6 @@ iframe.skiptranslate, .goog-te-banner-frame, .VIpgJd-ZVi9od-ORHb-OEVmcd, .VIpgJd
 .scroll-cue .drop::after{content:'';position:absolute;left:3px;right:3px;bottom:3px;height:8px;background:var(--turquoise);border-radius:50%;animation:dropfall 1.8s ease-in-out infinite;}
 @keyframes dropfall{0%{transform:translateY(10px);opacity:0;}30%{opacity:1;}100%{transform:translateY(-2px);opacity:0;}}
 
-/* ============ REVEAL ANIM ============ */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
 .reveal-stagger.in > *{opacity:1;transform:translateY(0);}
@@ -285,12 +263,10 @@ iframe.skiptranslate, .goog-te-banner-frame, .VIpgJd-ZVi9od-ORHb-OEVmcd, .VIpgJd
 .reveal-stagger.in > *:nth-child(3){transition-delay:.19s;}
 .reveal-stagger.in > *:nth-child(4){transition-delay:.27s;}
 
-/* ============ SECTION GENERIC ============ */
 section{padding:96px 0;}
 .section-head{max-width:640px;margin-bottom:52px;}
 .section-head h2{font-size:clamp(2rem,3.6vw,2.9rem);margin-top:14px;}
 .section-head p{color:var(--ink-soft);margin-top:16px;font-size:1.05rem;}
-/* ============ CABIN CARDS ============ */
 #cabanas{background:var(--sand);}
 .cabins-grid{display:grid;grid-template-columns:1fr;gap:36px;}
 @media(min-width:900px){.cabins-grid{grid-template-columns:1fr 1fr;}}
@@ -332,7 +308,6 @@ section{padding:96px 0;}
 .amenity svg{width:14px;height:14px;color:var(--turquoise-deep);}
 .divider-hair{height:1px;background:var(--sand-deep);}
 
-/* ============ BOOKING FORM (shared) ============ */
 .booking-toggle{width:100%;}
 .booking-panel{
   max-height:0;overflow:hidden;transition:max-height .5s ease;
@@ -371,7 +346,6 @@ section{padding:96px 0;}
 .whatsapp-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none;}
 .whatsapp-btn svg{width:19px;height:19px;}
 
-/* ============ TICKETS ============ */
 #entradas{background:var(--forest);color:var(--white);position:relative;overflow:hidden;}
 #entradas::before{content:'';position:absolute;inset:0;background:radial-gradient(60% 60% at 90% 10%, rgba(22,180,198,.25), transparent 60%);}
 #entradas .section-head{position:relative;}
@@ -388,7 +362,6 @@ section{padding:96px 0;}
 .ticket-includes span{display:flex;gap:8px;align-items:flex-start;}
 .ticket-includes svg{width:16px;height:16px;color:var(--turquoise-deep);flex-shrink:0;margin-top:2px;}
 
-/* ============ CAMPING BAND ============ */
 .camping-band{
   margin-top:36px;background:var(--white);border-radius:var(--radius-lg);
   box-shadow:var(--shadow-soft);padding:26px 28px;
@@ -403,7 +376,6 @@ section{padding:96px 0;}
 .camping-price{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
 .camping-price b{font-family:var(--font-display);font-size:1.6rem;color:var(--forest);}
 
-/* ============ RATE TOGGLE (cabañas) ============ */
 .rate-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:var(--sand);padding:6px;border-radius:var(--radius-md);}
 .rate-toggle button{
   padding:10px 8px;border-radius:var(--radius-sm);font-size:.82rem;font-weight:700;line-height:1.25;
@@ -412,7 +384,6 @@ section{padding:96px 0;}
 .rate-toggle button small{display:block;font-weight:500;font-size:.72rem;opacity:.85;}
 .rate-toggle button.active{background:var(--white);color:var(--forest);box-shadow:var(--shadow-soft);}
 
-/* ============ PACKAGES ============ */
 #paquetes{background:var(--sand);}
 .packages-grid{display:grid;grid-template-columns:1fr;gap:24px;}
 @media(min-width:769px){.packages-grid{grid-template-columns:repeat(3,1fr);}}
@@ -427,7 +398,6 @@ section{padding:96px 0;}
 .package-price{font-family:var(--font-display);font-size:1.5rem;color:var(--forest);margin-top:auto;}
 .package-price span{font-size:.7rem;color:var(--ink-soft);font-family:var(--font-body);}
 
-/* ============ GALLERY (filas justificadas, siempre alineadas) ============ */
 #galeria{background:var(--white);}
 .gallery-grid{display:block;}
 .gallery-row{display:flex;gap:8px;margin-bottom:8px;}
@@ -443,11 +413,8 @@ section{padding:96px 0;}
 .gallery-tile:nth-child(3n+1){background:linear-gradient(150deg,var(--wood) 0%,var(--wood-light) 100%);}
 .gallery-tile:nth-child(4n+2){background:linear-gradient(150deg,var(--turquoise-deep) 0%,var(--forest) 100%);}
 .gallery-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover);}
-/* la caja del tile ya tiene la proporción real de la foto/video (calculada
-   en JS), así que el cover de acá es solo un resguardo por redondeo — nunca recorta contenido */
 .gallery-tile img, .gallery-tile video{width:100%;height:100%;display:block;object-fit:cover;}
 
-/* Lightbox */
 .lightbox{position:fixed;inset:0;background:rgba(10,20,16,.92);z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;}
 .lightbox.open{display:flex;}
 .lightbox-inner{position:relative;max-width:820px;width:100%;}
@@ -469,7 +436,6 @@ section{padding:96px 0;}
 @media(min-width:640px){.lightbox-nav.prev{left:-56px;}.lightbox-nav.next{right:-56px;}}
 .lightbox-caption{color:#fff;text-align:center;margin-top:14px;font-size:.85rem;opacity:.8;}
 
-/* ============ LOCATION ============ */
 #ubicacion{background:var(--sand);}
 .location-grid{display:grid;grid-template-columns:1fr;gap:32px;}
 @media(min-width:900px){.location-grid{grid-template-columns:1.1fr .9fr;}}
@@ -482,7 +448,6 @@ section{padding:96px 0;}
 .contact-row span a{color:var(--turquoise-deep);text-decoration:underline;text-underline-offset:2px;}
 .contact-row span a:hover{color:var(--forest);}
 
-/* ============ FOOTER ============ */
 footer{background:var(--forest-dark);color:rgba(255,255,255,.82);padding:64px 0 28px;}
 .footer-grid{display:grid;grid-template-columns:1fr;gap:40px;margin-bottom:44px;}
 @media(min-width:769px){.footer-grid{grid-template-columns:1.3fr 1fr 1fr;}}
@@ -497,7 +462,6 @@ footer{background:var(--forest-dark);color:rgba(255,255,255,.82);padding:64px 0 
 .social-row svg{width:17px;height:17px;}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:.78rem;color:rgba(255,255,255,.55);}
 
-/* ============ FLOATING WHATSAPP ============ */
 .float-wa{
   position:fixed;bottom:22px;right:22px;z-index:600;
   width:58px;height:58px;border-radius:50%;background:#22B356;color:#fff;
@@ -514,7 +478,6 @@ footer{background:var(--forest-dark);color:rgba(255,255,255,.82);padding:64px 0 
 
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
-/* ============ ACCESIBILIDAD ============ */
 .float-a11y{
   position:fixed;bottom:22px;left:22px;z-index:650;
   width:58px;height:58px;border-radius:50%;background:var(--forest);color:var(--turquoise-pale);
@@ -561,7 +524,6 @@ footer{background:var(--forest-dark);color:rgba(255,255,255,.82);padding:64px 0 
 }
 .a11y-reset:hover{background:var(--forest);color:var(--white);}
 
-/* --- modos aplicados sobre <html> --- */
 html.a11y-fs-1{font-size:112%;}
 html.a11y-fs-2{font-size:124%;}
 html.a11y-fs-3{font-size:138%;}
@@ -626,7 +588,6 @@ html.a11y-contrast .float-a11y{
   .float-wa svg{width:24px;height:24px;}
 }
 
-/* ============ AJUSTES MÓVIL (espaciado más compacto, no-hero) ============ */
 @media (max-width:640px){
   .container{padding:0 18px;}
 
@@ -647,10 +608,7 @@ html.a11y-contrast .float-a11y{
   footer{padding:48px 0 24px;}
 }
 
-/* ============ HERO MÓVIL (rediseño ≤768px) ============ */
 @media (max-width:768px){
-  /* en móvil/tablet vertical se usa la foto (bien encuadrada) en vez del
-     video panorámico, que recortado en vertical pierde la catarata */
   .hero-video{display:none;}
   .hero-photo{display:block;object-position:center 22%;}
 
@@ -659,8 +617,6 @@ html.a11y-contrast .float-a11y{
     min-height:100vh;min-height:100svh;
   }
 
-  /* overlay propio: transparente arriba (para que se vea la catarata)
-     y oscuro abajo (donde se apoya el texto), contraste WCAG AA */
   .hero::after{
     background:
       linear-gradient(180deg, rgba(4,16,12,0) 0%, rgba(4,16,12,.2) 45%, rgba(4,16,12,.88) 78%, rgba(3,14,11,.92) 100%);
@@ -699,10 +655,6 @@ html.a11y-contrast .float-a11y{
 
   .scroll-cue{display:none;}
 
-  /* entrada escalonada y sutil (fade + translateY), solo móvil.
-     Son 5 hijos en el DOM (versión escritorio + móvil del eyebrow, aunque
-     una esté oculta) agrupados en 4 "pasos" visuales: eyebrow, título,
-     párrafo, botones. */
   #heroContent > *{opacity:0;transform:translateY(10px);transition:opacity .5s ease, transform .5s ease;}
   #heroContent.in > *{opacity:1;transform:translateY(0);}
   #heroContent.in > *:nth-child(1),

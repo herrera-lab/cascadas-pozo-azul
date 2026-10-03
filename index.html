@@ -10,8 +10,6 @@
 <meta property="og:title" content="Cascadas Pozo Azul — Cabins & Day Passes in Colonia Toro Amarillo">
 <meta property="og:description" content="Cascadas Pozo Azul is a tropical forest spot where the river carves out turquoise pools. It offers fully equipped cabins, a camping area, and day passes for the whole family. Here, you will find the area's tallest waterfall, boasting a 155-meter drop.">
 <link rel="icon" type="image/jpeg" href="imagenes/Logo.jpeg">
-<!-- posters del hero: primera imagen visible de la página, se piden
-     antes que cualquier otra cosa para que aparezcan de inmediato -->
 <link rel="preload" as="image" href="hero/VideoHeroPoster.jpg" media="(min-width: 769px)" fetchpriority="high">
 <link rel="preload" as="image" href="hero/HeroMovilPoster.jpg" media="(max-width: 768px)" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +19,6 @@
 </head>
 <body>
 
-<!-- ============ NAV ============ -->
 <nav class="nav" id="nav">
   <div class="container">
     <a href="#inicio" class="brand">
@@ -56,10 +53,6 @@
     </div>
   </div>
 </nav>
-<!-- fuera del <nav> a propósito: si quedan adentro, el backdrop-filter que
-     .nav.scrolled aplica al hacer scroll los vuelve el contenedor de
-     referencia de estos elementos position:fixed, y el panel pierde su
-     tamaño/fondo correcto -->
 <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-head">
@@ -76,7 +69,6 @@
   <a href="#cabanas" class="btn btn-primary mobile-menu-cta">Reservar ahora</a>
 </div>
 
-<!-- ============ HERO ============ -->
 <header class="hero" id="inicio">
   <video class="hero-photo" muted loop playsinline preload="none" poster="hero/HeroMovilPoster.jpg" disablepictureinpicture aria-hidden="true">
     <source src="hero/HeroMovil.mp4" type="video/mp4">
@@ -99,7 +91,6 @@
   <div class="scroll-cue"><span>Desliza</span><div class="drop"></div></div>
 </header>
 
-<!-- ============ CABAÑAS ============ -->
 <section id="cabanas">
   <div class="container">
     <div class="section-head reveal">
@@ -127,7 +118,6 @@
 
 <div class="wave-divider"><svg viewBox="0 0 1200 40" preserveAspectRatio="none" width="100%" height="40"><path d="M0 20 Q150 0 300 20 T600 20 T900 20 T1200 20"/></svg></div>
 
-<!-- ============ ENTRADAS ============ -->
 <section id="entradas">
   <div class="container">
     <div class="section-head reveal">
@@ -184,7 +174,6 @@
   </div>
 </section>
 
-<!-- ============ PAQUETES ============ -->
 <section id="paquetes">
   <div class="container">
     <div class="section-head reveal">
@@ -198,7 +187,6 @@
 
 <div class="wave-divider"><svg viewBox="0 0 1200 40" preserveAspectRatio="none" width="100%" height="40"><path d="M0 20 Q150 40 300 20 T600 20 T900 20 T1200 20"/></svg></div>
 
-<!-- ============ GALERÍA ============ -->
 <section id="galeria">
   <div class="container">
     <div class="section-head reveal">
@@ -210,7 +198,6 @@
   </div>
 </section>
 
-<!-- ============ UBICACIÓN ============ -->
 <section id="ubicacion">
   <div class="container">
     <div class="section-head reveal">
@@ -249,7 +236,6 @@
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
 <footer>
   <div class="container">
     <div class="footer-grid">
@@ -292,7 +278,6 @@
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a8 8 0 0 1-4.08-1.12l-.29-.17-3.02.79.8-2.94-.19-.3A7.94 7.94 0 0 1 4 12a8 8 0 1 1 8 8zm4.4-5.9c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.55.12-.16.24-.63.78-.77.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.8-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
 </a>
 
-<!-- ============ ACCESIBILIDAD ============ -->
 <button type="button" class="float-a11y" id="a11yToggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="a11yPanel" aria-label="Opciones de accesibilidad">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <circle cx="12" cy="4.2" r="1.9"/>
@@ -352,7 +337,6 @@
   <button type="button" class="a11y-reset" id="a11yReset">Restablecer todo</button>
 </div>
 
-<!-- ============ LIGHTBOX ============ -->
 <div class="lightbox" id="lightbox">
   <div class="lightbox-inner">
     <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">&times;</button>
