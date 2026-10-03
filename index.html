@@ -142,7 +142,13 @@
       <div class="ticket-form">
         <div class="field" style="margin-bottom:14px;">
           <label for="ticketDate">Fecha de visita</label>
-          <input type="date" id="ticketDate">
+          <div class="date-wrap">
+            <input type="date" id="ticketDate">
+            <span class="date-placeholder" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              dd/mm/aaaa
+            </span>
+          </div>
           <p class="field-error" id="ticketDateError"></p>
         </div>
         <div class="stepper" style="margin-bottom:10px;">

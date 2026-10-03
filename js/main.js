@@ -106,6 +106,11 @@ function keepHeroVideoPlaying(selector, skipIfQuery){
 keepHeroVideoPlaying('.hero-video', '(max-width: 768px)');
 keepHeroVideoPlaying('.hero-photo', '(min-width: 769px)');
 
+function syncDatePlaceholder(input){
+  const wrap = input.closest('.date-wrap');
+  if(wrap) wrap.classList.toggle('has-value', !!input.value);
+}
+
 function formatCRC(n){ return '₡' + Math.round(n).toLocaleString('es-CR'); }
 function formatUSD(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
 function todayStr(){ const d = new Date(); return d.toISOString().split('T')[0]; }
@@ -202,12 +207,24 @@ function renderCabins(){
             <div class="field-row">
               <div class="field" data-field="checkin-${cabin.id}">
                 <label for="checkin-${cabin.id}">Check-in</label>
-                <input type="date" id="checkin-${cabin.id}" data-cabin-input="${cabin.id}" data-role="checkin">
+                <div class="date-wrap">
+                  <input type="date" id="checkin-${cabin.id}" data-cabin-input="${cabin.id}" data-role="checkin">
+                  <span class="date-placeholder" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                    dd/mm/aaaa
+                  </span>
+                </div>
                 <p class="field-error"></p>
               </div>
               <div class="field" data-field="checkout-${cabin.id}">
                 <label for="checkout-${cabin.id}">Check-out</label>
-                <input type="date" id="checkout-${cabin.id}" data-cabin-input="${cabin.id}" data-role="checkout">
+                <div class="date-wrap">
+                  <input type="date" id="checkout-${cabin.id}" data-cabin-input="${cabin.id}" data-role="checkout">
+                  <span class="date-placeholder" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                    dd/mm/aaaa
+                  </span>
+                </div>
                 <p class="field-error"></p>
               </div>
             </div>
@@ -303,7 +320,12 @@ function renderCabins(){
 
   $$('[data-cabin-input]').forEach(input => {
     input.min = todayStr();
-    input.addEventListener('change', () => updateCabinCalc(input.getAttribute('data-cabin-input')));
+    syncDatePlaceholder(input);
+    input.addEventListener('input', () => syncDatePlaceholder(input));
+    input.addEventListener('change', () => {
+      syncDatePlaceholder(input);
+      updateCabinCalc(input.getAttribute('data-cabin-input'));
+    });
   });
 
   CONFIG.cabins.forEach(cabin => {
@@ -461,6 +483,7 @@ function initTickets(){
     const children = parseInt($('#ticketChildren').textContent);
     const date = $('#ticketDate').value;
     const waBtn = $('#ticketWaBtn');
+    syncDatePlaceholder($('#ticketDate'));
     clearFieldError('ticketDate-wrap');
     $('#ticketDateError').textContent = '';
 
@@ -495,6 +518,7 @@ function initTickets(){
     calc();
   }));
   $('#ticketDate').addEventListener('change', calc);
+  $('#ticketDate').addEventListener('input', calc);
 
   $('#ticketWaBtn').addEventListener('click', () => {
     const adults = $('#ticketAdults').textContent;
@@ -551,32 +575,32 @@ Incluye: ${pkg.includes.join(', ')}
 
 const GALLERY_ITEMS = [
   { src: 'imagenes/galeria/17.jpeg', alt: 'Desayuno con vista a la zona de camping y juegos' },
-  { type: 'video', src: 'imagenes/galeria/v1.mp4', alt: 'Video: llegada a la catarata' },
+  { type: 'video', src: 'imagenes/galeria/v1.mp4', poster: 'imagenes/galeria/v1poster.jpg', alt: 'Video: llegada a la catarata' },
   { src: 'imagenes/galeria/9.jpeg', alt: 'Poza turquesa al pie de la cascada' },
   { src: 'imagenes/galeria/3.jpeg', alt: 'Catarata Caída de Nieve y Paz' },
   { src: 'imagenes/galeria/18.jpeg', alt: 'Pescado entero frito con papas fritas' },
   { src: 'imagenes/galeria/8.jpeg', alt: 'Rótulo de entrada a la cascada y poza azul' },
-  { type: 'video', src: 'imagenes/galeria/v2.mp4', alt: 'Video: cruce del río en la canasta aérea' },
+  { type: 'video', src: 'imagenes/galeria/v2.mp4', poster: 'imagenes/galeria/v2poster.jpg', alt: 'Video: cruce del río en la canasta aérea' },
   { src: 'imagenes/galeria/16.jpeg', alt: 'Cabañas Heliconia y Guaria Morada' },
   { src: 'imagenes/galeria/13.jpeg', alt: 'Vista aérea de la catarata principal' },
   { src: 'imagenes/galeria/19.jpeg', alt: 'Almuerzo típico con carne en salsa' },
-  { type: 'video', src: 'imagenes/galeria/v4.mp4', alt: 'Video: poza turquesa' },
+  { type: 'video', src: 'imagenes/galeria/v4.mp4', poster: 'imagenes/galeria/v4poster.jpg', alt: 'Video: poza turquesa' },
   { src: 'imagenes/galeria/1.jpeg', alt: 'Vista del volcán desde la entrada' },
   { src: 'imagenes/galeria/11.jpeg', alt: 'Vista de la catarata en día despejado' },
-  { type: 'video', src: 'imagenes/galeria/v7.mp4', alt: 'Video: un día en Cascadas Pozo Azul' },
+  { type: 'video', src: 'imagenes/galeria/v7.mp4', poster: 'imagenes/galeria/v7poster.jpg', alt: 'Video: un día en Cascadas Pozo Azul' },
   { src: 'imagenes/galeria/14.jpeg', alt: 'Cascada doble con poza natural' },
   { src: 'imagenes/galeria/20.jpeg', alt: 'Filete de pescado frito con patacones' },
   { src: 'imagenes/galeria/6.jpeg', alt: 'Cruce del río en canasta aérea' },
   { src: 'imagenes/galeria/10.jpeg', alt: 'Rancho con mesas y vista panorámica' },
-  { type: 'video', src: 'imagenes/galeria/v6.mp4', alt: 'Video: recorrido por Cascadas Pozo Azul' },
+  { type: 'video', src: 'imagenes/galeria/v6.mp4', poster: 'imagenes/galeria/v6poster.jpg', alt: 'Video: recorrido por Cascadas Pozo Azul' },
   { src: 'imagenes/galeria/4.jpeg', alt: 'Sendero de escaleras en el bosque' },
   { src: 'imagenes/galeria/21.jpeg', alt: 'Plato típico con pollo en salsa y plátanos maduros' },
   { src: 'imagenes/galeria/15.jpeg', alt: 'Zona de juegos, piscina y jardines' },
   { src: 'imagenes/galeria/2.jpeg', alt: 'Almuerzo típico (casado) con vista al valle' },
-  { type: 'video', src: 'imagenes/galeria/v5.mp4', alt: 'Video: sendero del bosque' },
+  { type: 'video', src: 'imagenes/galeria/v5.mp4', poster: 'imagenes/galeria/v5poster.jpg', alt: 'Video: sendero del bosque' },
   { src: 'imagenes/galeria/7.jpeg', alt: 'Canasta aérea sobre el río' },
   { src: 'imagenes/galeria/5.jpeg', alt: 'Entrada al sendero de la catarata' },
-  { type: 'video', src: 'imagenes/galeria/v3.mp4', alt: 'Video: caída de agua de la catarata' },
+  { type: 'video', src: 'imagenes/galeria/v3.mp4', poster: 'imagenes/galeria/v3poster.jpg', alt: 'Video: caída de agua de la catarata' },
   { src: 'imagenes/galeria/12.jpeg', alt: 'Vista aérea de la cascada entre el bosque' }
 ];
 function galleryLayoutConfig(){
@@ -592,6 +616,7 @@ function createGalleryMedia(item){
     if(item.type === 'video'){
       const v = document.createElement('video');
       v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'metadata';
+      if(item.poster) v.poster = item.poster;
       const finish = () => resolve({ el: v, ratio: (v.videoWidth && v.videoHeight) ? v.videoWidth / v.videoHeight : 16/9 });
       v.addEventListener('loadedmetadata', finish, { once:true });
       v.addEventListener('error', finish, { once:true });
