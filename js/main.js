@@ -789,6 +789,24 @@ function initNavScroll(){
   }, { passive:true });
 }
 
+function initFloatWhatsapp(){
+  const btn = $('#floatWaBtn');
+  if(!btn) return;
+  const SHOW_AFTER = 250;
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    btn.classList.toggle('is-visible', window.scrollY > SHOW_AFTER);
+  };
+  const onScroll = () => {
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  };
+  window.addEventListener('scroll', onScroll, { passive:true });
+  update();
+}
+
 function initMobileMenu(){
   const toggle = $('#navToggle');
   const menu = $('#mobileMenu');
@@ -861,6 +879,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderPackages();
   renderGallery();
   initNavScroll();
+  initFloatWhatsapp();
   initMobileMenu();
   initGeneralWhatsapp();
   requestAnimationFrame(() => { $('#heroContent').classList.add('in'); });
