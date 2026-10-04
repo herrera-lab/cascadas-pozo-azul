@@ -179,6 +179,20 @@ async function saveBookings(entry){
   }
 }
 
+const ENTRADAS_API_URL = 'https://script.google.com/macros/s/AKfycbyaXDbMOpMv4ozoXehKMV_5p91s-TttLh57nNciEbvMyS5mcg0HV9mYlSVnsCqNivsQ/exec';
+
+// Registro "dispara y olvida": nunca debe bloquear ni retrasar la apertura de WhatsApp
+function registrarEntrada(fecha, adultos, ninos){
+  try{
+    fetch(ENTRADAS_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ type: 'entrada', fecha, adultos, ninos }),
+      keepalive: true
+    }).catch(() => {});
+  }catch(e){}
+}
+
 function rangesOverlap(aStart, aEnd, bStart, bEnd){
   return parseDate(aStart) < parseDate(bEnd) && parseDate(bStart) < parseDate(aEnd);
 }
@@ -538,10 +552,16 @@ function initTickets(){
   $('#ticketDate').addEventListener('change', calc);
   $('#ticketDate').addEventListener('input', calc);
 
+  let lastEntradaRegistro = 0;
   $('#ticketWaBtn').addEventListener('click', () => {
     const adults = $('#ticketAdults').textContent;
     const children = $('#ticketChildren').textContent;
     const date = $('#ticketDate').value;
+    const now = Date.now();
+    if(date && now - lastEntradaRegistro > 2000){
+      lastEntradaRegistro = now;
+      registrarEntrada(date, parseInt(adults, 10) || 0, parseInt(children, 10) || 0);
+    }
     const total = parseFloat($('#ticketWaBtn').dataset.total || 0);
     const totalUsd = parseFloat($('#ticketWaBtn').dataset.totalUsd || 0);
     const message =
