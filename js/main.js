@@ -835,7 +835,7 @@ function initReveal(){
 function initGeneralWhatsapp(){
   const genericMsg = '¡Hola! Quiero más información sobre Cascadas Pozo Azul';
   const link = waLink(genericMsg);
-  ['floatWaBtn','contactWaBtn','footerWaBtn'].forEach(id => {
+  ['floatWaBtn','footerWaBtn'].forEach(id => {
     const el = document.getElementById(id);
     if(el) el.href = link;
   });
