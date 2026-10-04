@@ -120,7 +120,7 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.08;let
 .btn-ghost{background:var(--sand-deep);color:var(--forest);}
 .btn-ghost:hover{background:var(--turquoise-pale);}
 .btn-nav-cta{display:none;}
-@media(min-width:640px){.btn-nav-cta{display:inline-flex;}}
+@media(min-width:640px) and (max-width:899px){.btn-nav-cta{display:inline-flex;}}
 
 .nav-toggle{
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
