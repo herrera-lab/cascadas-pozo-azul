@@ -175,7 +175,6 @@ h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.08;let
   transition:background .2s, color .2s, padding-left .2s;
 }
 .mobile-menu-links a:hover{background:rgba(255,255,255,.08);color:var(--turquoise-pale);padding-left:16px;}
-.mobile-menu-cta{margin:auto 22px 24px;}
 @media(min-width:900px){.mobile-menu, .mobile-menu-backdrop{display:none;}}
 
 .nav-right{display:flex;align-items:center;gap:12px;}
