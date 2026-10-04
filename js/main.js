@@ -65,6 +65,12 @@ const PACKAGE_ICONS = {
 const $ = (sel, ctx=document) => ctx.querySelector(sel);
 const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
 
+const IS_IOS = /iP(hone|od|ad)/.test(navigator.platform) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+if(IS_IOS){
+  const viewport = $('meta[name="viewport"]');
+  if(viewport && !/maximum-scale/.test(viewport.content)) viewport.content += ', maximum-scale=1';
+}
+
 function keepHeroVideoPlaying(selector, skipIfQuery){
   const video = $(selector);
   if(!video) return;

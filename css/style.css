@@ -23,7 +23,8 @@
   --container:1180px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
   *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
@@ -447,7 +448,7 @@ section{padding:96px 0;}
 #ubicacion{background:var(--sand);}
 .location-grid{display:grid;grid-template-columns:1fr;gap:32px;}
 @media(min-width:900px){.location-grid{grid-template-columns:1.1fr .9fr;}}
-.map-frame{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-soft);aspect-ratio:4/3;border:none;width:100%;}
+.map-frame{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-soft);aspect-ratio:4/3;border:none;width:100%;max-width:100%;}
 .contact-card{background:var(--white);border-radius:var(--radius-lg);padding:30px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:20px;}
 .contact-row{display:flex;gap:14px;align-items:flex-start;}
 .contact-row svg{width:20px;height:20px;color:var(--turquoise-deep);flex-shrink:0;margin-top:2px;}
@@ -471,7 +472,7 @@ footer{background:var(--forest-dark);color:rgba(255,255,255,.82);padding:64px 0 
 .footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:.78rem;color:rgba(255,255,255,.55);}
 
 .float-wa{
-  position:fixed;bottom:22px;right:22px;z-index:600;
+  position:fixed;bottom:calc(22px + env(safe-area-inset-bottom, 0px));right:calc(22px + env(safe-area-inset-right, 0px));z-index:600;
   width:58px;height:58px;border-radius:50%;background:#22B356;color:#fff;
   display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -8px rgba(34,179,86,.6);
   transition:transform .25s ease;
@@ -483,6 +484,7 @@ footer{background:var(--forest-dark);color:rgba(255,255,255,.82);padding:64px 0 
   animation:pulse 2.4s ease-out infinite;
 }
 @keyframes pulse{0%{transform:scale(1);opacity:.45;}100%{transform:scale(1.7);opacity:0;}}
+@keyframes pulse-sm{0%{transform:scale(1);opacity:.45;}100%{transform:scale(1.6);opacity:0;}}
 
 
 .stepper-controls button, .mobile-menu-close, .social-row a, .a11y-close{position:relative;}
@@ -496,7 +498,7 @@ footer{background:var(--forest-dark);color:rgba(255,255,255,.82);padding:64px 0 
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
 .float-a11y{
-  position:fixed;bottom:22px;left:22px;z-index:650;
+  position:fixed;bottom:calc(22px + env(safe-area-inset-bottom, 0px));left:calc(22px + env(safe-area-inset-left, 0px));z-index:650;
   width:58px;height:58px;border-radius:50%;background:var(--forest);color:var(--turquoise-pale);
   display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -8px rgba(15,61,46,.55);
   transition:transform .25s ease;
@@ -506,7 +508,7 @@ footer{background:var(--forest-dark);color:rgba(255,255,255,.82);padding:64px 0 
 .float-a11y[aria-expanded="true"]{background:var(--turquoise-deep);}
 
 .a11y-panel{
-  position:fixed;bottom:90px;left:22px;z-index:650;
+  position:fixed;bottom:calc(90px + env(safe-area-inset-bottom, 0px));left:calc(22px + env(safe-area-inset-left, 0px));z-index:650;
   width:min(320px, calc(100vw - 44px));max-height:min(560px, calc(100vh - 130px));overflow-y:auto;
   background:var(--white);color:var(--ink);border-radius:var(--radius-md);
   box-shadow:var(--shadow-hover);padding:18px;
@@ -598,10 +600,11 @@ html.a11y-contrast .float-a11y{
 }
 
 @media (max-width:520px){
-  .float-a11y{width:52px;height:52px;bottom:16px;left:16px;}
+  .float-a11y{width:52px;height:52px;bottom:calc(16px + env(safe-area-inset-bottom, 0px));left:calc(16px + env(safe-area-inset-left, 0px));}
   .float-a11y svg{width:24px;height:24px;}
-  .a11y-panel{left:16px;bottom:78px;}
-  .float-wa{width:52px;height:52px;bottom:16px;right:16px;}
+  .a11y-panel{left:calc(16px + env(safe-area-inset-left, 0px));bottom:calc(78px + env(safe-area-inset-bottom, 0px));}
+  .float-wa{width:52px;height:52px;bottom:calc(16px + env(safe-area-inset-bottom, 0px));right:calc(16px + env(safe-area-inset-right, 0px));}
+  .float-wa::before{animation-name:pulse-sm;}
   .float-wa svg{width:24px;height:24px;}
 }
 
