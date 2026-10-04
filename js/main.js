@@ -174,7 +174,7 @@ function renderCabins(){
   grid.innerHTML = CONFIG.cabins.map(cabin => {
     const slides = cabin.images.map((img,i) => `
       <div class="cabin-slide ${i===0?'active':''}" data-slide="${i}">
-        <img src="${img.src}" alt="${img.alt}">
+        <img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async">
       </div>`).join('');
     const dots = cabin.images.map((_,i) => `<button data-dot="${i}" class="${i===0?'active':''}" aria-label="Foto ${i+1}"></button>`).join('');
 
@@ -573,34 +573,34 @@ Incluye: ${pkg.includes.join(', ')}
 }
 
 const GALLERY_ITEMS = [
-  { src: 'imagenes/galeria/17.webp', alt: 'Desayuno con vista a la zona de camping y juegos' },
-  { type: 'video', src: 'imagenes/galeria/v1.mp4', poster: 'imagenes/galeria/v1poster.webp', alt: 'Video: llegada a la catarata' },
-  { src: 'imagenes/galeria/9.webp', alt: 'Poza turquesa al pie de la cascada' },
-  { src: 'imagenes/galeria/3.webp', alt: 'Catarata Caída de Nieve y Paz' },
-  { src: 'imagenes/galeria/18.webp', alt: 'Pescado entero frito con papas fritas' },
-  { src: 'imagenes/galeria/8.webp', alt: 'Rótulo de entrada a la cascada y poza azul' },
-  { type: 'video', src: 'imagenes/galeria/v2.mp4', poster: 'imagenes/galeria/v2poster.webp', alt: 'Video: cruce del río en la canasta aérea' },
-  { src: 'imagenes/galeria/16.webp', alt: 'Cabañas Heliconia y Guaria Morada' },
-  { src: 'imagenes/galeria/13.webp', alt: 'Vista aérea de la catarata principal' },
-  { src: 'imagenes/galeria/19.webp', alt: 'Almuerzo típico con carne en salsa' },
-  { type: 'video', src: 'imagenes/galeria/v4.mp4', poster: 'imagenes/galeria/v4poster.webp', alt: 'Video: poza turquesa' },
-  { src: 'imagenes/galeria/1.webp', alt: 'Vista del volcán desde la entrada' },
-  { src: 'imagenes/galeria/11.webp', alt: 'Vista de la catarata en día despejado' },
-  { type: 'video', src: 'imagenes/galeria/v7.mp4', poster: 'imagenes/galeria/v7poster.webp', alt: 'Video: un día en Cascadas Pozo Azul' },
-  { src: 'imagenes/galeria/14.webp', alt: 'Cascada doble con poza natural' },
-  { src: 'imagenes/galeria/20.webp', alt: 'Filete de pescado frito con patacones' },
-  { src: 'imagenes/galeria/6.webp', alt: 'Cruce del río en canasta aérea' },
-  { src: 'imagenes/galeria/10.webp', alt: 'Rancho con mesas y vista panorámica' },
-  { type: 'video', src: 'imagenes/galeria/v6.mp4', poster: 'imagenes/galeria/v6poster.webp', alt: 'Video: recorrido por Cascadas Pozo Azul' },
-  { src: 'imagenes/galeria/4.webp', alt: 'Sendero de escaleras en el bosque' },
-  { src: 'imagenes/galeria/21.webp', alt: 'Plato típico con pollo en salsa y plátanos maduros' },
-  { src: 'imagenes/galeria/15.webp', alt: 'Zona de juegos, piscina y jardines' },
-  { src: 'imagenes/galeria/2.webp', alt: 'Almuerzo típico (casado) con vista al valle' },
-  { type: 'video', src: 'imagenes/galeria/v5.mp4', poster: 'imagenes/galeria/v5poster.webp', alt: 'Video: sendero del bosque' },
-  { src: 'imagenes/galeria/7.webp', alt: 'Canasta aérea sobre el río' },
-  { src: 'imagenes/galeria/5.webp', alt: 'Entrada al sendero de la catarata' },
-  { type: 'video', src: 'imagenes/galeria/v3.mp4', poster: 'imagenes/galeria/v3poster.webp', alt: 'Video: caída de agua de la catarata' },
-  { src: 'imagenes/galeria/12.webp', alt: 'Vista aérea de la cascada entre el bosque' }
+  { src: 'imagenes/galeria/17.webp', ratio: 1.5143, alt: 'Desayuno con vista a la zona de camping y juegos' },
+  { type: 'video', src: 'imagenes/galeria/v1.mp4', poster: 'imagenes/galeria/v1poster.webp', ratio: 0.5625, alt: 'Video: llegada a la catarata' },
+  { src: 'imagenes/galeria/9.webp', ratio: 0.75, alt: 'Poza turquesa al pie de la cascada' },
+  { src: 'imagenes/galeria/3.webp', ratio: 0.75, alt: 'Catarata Caída de Nieve y Paz' },
+  { src: 'imagenes/galeria/18.webp', ratio: 1.5112, alt: 'Pescado entero frito con papas fritas' },
+  { src: 'imagenes/galeria/8.webp', ratio: 0.75, alt: 'Rótulo de entrada a la cascada y poza azul' },
+  { type: 'video', src: 'imagenes/galeria/v2.mp4', poster: 'imagenes/galeria/v2poster.webp', ratio: 0.5625, alt: 'Video: cruce del río en la canasta aérea' },
+  { src: 'imagenes/galeria/16.webp', ratio: 0.75, alt: 'Cabañas Heliconia y Guaria Morada' },
+  { src: 'imagenes/galeria/13.webp', ratio: 0.7133, alt: 'Vista aérea de la catarata principal' },
+  { src: 'imagenes/galeria/19.webp', ratio: 1.5332, alt: 'Almuerzo típico con carne en salsa' },
+  { type: 'video', src: 'imagenes/galeria/v4.mp4', poster: 'imagenes/galeria/v4poster.webp', ratio: 0.5625, alt: 'Video: poza turquesa' },
+  { src: 'imagenes/galeria/1.webp', ratio: 0.75, alt: 'Vista del volcán desde la entrada' },
+  { src: 'imagenes/galeria/11.webp', ratio: 0.75, alt: 'Vista de la catarata en día despejado' },
+  { type: 'video', src: 'imagenes/galeria/v7.mp4', poster: 'imagenes/galeria/v7poster.webp', ratio: 0.5625, alt: 'Video: un día en Cascadas Pozo Azul' },
+  { src: 'imagenes/galeria/14.webp', ratio: 0.75, alt: 'Cascada doble con poza natural' },
+  { src: 'imagenes/galeria/20.webp', ratio: 1.3429, alt: 'Filete de pescado frito con patacones' },
+  { src: 'imagenes/galeria/6.webp', ratio: 0.75, alt: 'Cruce del río en canasta aérea' },
+  { src: 'imagenes/galeria/10.webp', ratio: 0.75, alt: 'Rancho con mesas y vista panorámica' },
+  { type: 'video', src: 'imagenes/galeria/v6.mp4', poster: 'imagenes/galeria/v6poster.webp', ratio: 0.5625, alt: 'Video: recorrido por Cascadas Pozo Azul' },
+  { src: 'imagenes/galeria/4.webp', ratio: 0.75, alt: 'Sendero de escaleras en el bosque' },
+  { src: 'imagenes/galeria/21.webp', ratio: 0.7895, alt: 'Plato típico con pollo en salsa y plátanos maduros' },
+  { src: 'imagenes/galeria/15.webp', ratio: 0.75, alt: 'Zona de juegos, piscina y jardines' },
+  { src: 'imagenes/galeria/2.webp', ratio: 0.75, alt: 'Almuerzo típico (casado) con vista al valle' },
+  { type: 'video', src: 'imagenes/galeria/v5.mp4', poster: 'imagenes/galeria/v5poster.webp', ratio: 0.5625, alt: 'Video: sendero del bosque' },
+  { src: 'imagenes/galeria/7.webp', ratio: 0.75, alt: 'Canasta aérea sobre el río' },
+  { src: 'imagenes/galeria/5.webp', ratio: 0.75, alt: 'Entrada al sendero de la catarata' },
+  { type: 'video', src: 'imagenes/galeria/v3.mp4', poster: 'imagenes/galeria/v3poster.webp', ratio: 0.5625, alt: 'Video: caída de agua de la catarata' },
+  { src: 'imagenes/galeria/12.webp', ratio: 1.3333, alt: 'Vista aérea de la cascada entre el bosque' }
 ];
 function galleryLayoutConfig(){
   const w = window.innerWidth;
@@ -611,26 +611,19 @@ function galleryLayoutConfig(){
 }
 
 function createGalleryMedia(item){
-  return new Promise(resolve => {
-    if(item.type === 'video'){
-      const v = document.createElement('video');
-      v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'metadata';
-      if(item.poster) v.poster = item.poster;
-      const finish = () => resolve({ el: v, ratio: (v.videoWidth && v.videoHeight) ? v.videoWidth / v.videoHeight : 16/9 });
-      v.addEventListener('loadedmetadata', finish, { once:true });
-      v.addEventListener('error', finish, { once:true });
-      v.src = item.src;
-    } else {
-      const img = document.createElement('img');
-      img.alt = item.alt;
-      img.decoding = 'async';
-      const finish = () => resolve({ el: img, ratio: (img.naturalWidth && img.naturalHeight) ? img.naturalWidth / img.naturalHeight : 0.75 });
-      img.addEventListener('load', finish, { once:true });
-      img.addEventListener('error', finish, { once:true });
-      img.src = item.src;
-      if(img.complete && img.naturalWidth) finish();
-    }
-  });
+  if(item.type === 'video'){
+    const v = document.createElement('video');
+    v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'none';
+    if(item.poster) v.poster = item.poster;
+    v.src = item.src;
+    return v;
+  }
+  const img = document.createElement('img');
+  img.alt = item.alt;
+  img.decoding = 'async';
+  img.loading = 'lazy';
+  img.src = item.src;
+  return img;
 }
 
 function layoutGalleryJustified(grid, entries){
@@ -683,43 +676,35 @@ function renderGallery(){
   const grid = $('#galleryGrid');
   grid.innerHTML = '';
 
-  Promise.all(GALLERY_ITEMS.map((item, i) => createGalleryMedia(item).then(({ el, ratio }) => {
+  const entries = GALLERY_ITEMS.map((item, i) => {
     const tile = document.createElement('div');
     tile.className = 'gallery-tile reveal';
     tile.dataset.index = i;
     tile.setAttribute('role', 'button');
     tile.setAttribute('tabindex', '0');
     tile.setAttribute('aria-label', `Ver ${item.type === 'video' ? 'video' : 'foto'}: ${item.alt}`);
-    tile.appendChild(el);
-    return { tile, ratio };
-  }))).then(entries => {
-    layoutGalleryJustified(grid, entries);
-    attachGalleryTileHandlers();
-
-    if(revealObserver) $$('.gallery-tile.reveal', grid).forEach(el => revealObserver.observe(el));
-
-    const galleryVideoObserver = new IntersectionObserver(videoEntries => {
-      videoEntries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.play().catch(() => {});
-        else entry.target.pause();
-      });
-    }, { threshold: 0.25 });
-    $$('.gallery-tile video', grid).forEach(video => galleryVideoObserver.observe(video));
+    tile.appendChild(createGalleryMedia(item));
+    return { tile, ratio: item.ratio || 0.75 };
   });
+  layoutGalleryJustified(grid, entries);
+  attachGalleryTileHandlers();
+
+  const galleryVideoObserver = new IntersectionObserver(videoEntries => {
+    videoEntries.forEach(entry => {
+      if(entry.isIntersecting){
+        if(!document.documentElement.classList.contains('a11y-pause-anim')) entry.target.play().catch(() => {});
+      } else entry.target.pause();
+    });
+  }, { threshold: 0.25 });
+  $$('.gallery-tile video', grid).forEach(video => galleryVideoObserver.observe(video));
 
   let resizeTimer;
+  let lastWidth = grid.clientWidth;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      const tiles = $$('.gallery-tile', grid);
-      if(!tiles.length) return;
-      const entries = tiles.map(tile => {
-        const media = tile.querySelector('img, video');
-        const ratio = media.tagName === 'VIDEO'
-          ? ((media.videoWidth && media.videoHeight) ? media.videoWidth / media.videoHeight : 16/9)
-          : ((media.naturalWidth && media.naturalHeight) ? media.naturalWidth / media.naturalHeight : 0.75);
-        return { tile, ratio };
-      });
+      if(grid.clientWidth === lastWidth) return;
+      lastWidth = grid.clientWidth;
       layoutGalleryJustified(grid, entries);
     }, 200);
   });

@@ -33,7 +33,17 @@
     if(state.fontStep > 0) html.classList.add(FONT_CLASSES[state.fontStep - 1]);
   }
 
+  function loadReadableFont(){
+    if(document.getElementById('a11yReadableFont')) return;
+    const link = document.createElement('link');
+    link.id = 'a11yReadableFont';
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap';
+    document.head.appendChild(link);
+  }
+
   function applyToggle(key, on){
+    if(key === 'readable-font' && on) loadReadableFont();
     html.classList.toggle('a11y-' + key, on);
     const btn = document.querySelector(`[data-a11y-toggle="${key}"]`);
     if(btn) btn.setAttribute('aria-pressed', on ? 'true' : 'false');
