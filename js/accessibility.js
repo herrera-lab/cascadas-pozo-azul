@@ -2,15 +2,17 @@
   const STORAGE_KEY = 'pozoazul_a11y';
   const html = document.documentElement;
 
-  const toggle = document.getElementById('a11yToggle');
+  const toggles = Array.from(document.querySelectorAll('[data-a11y-open]'));
   const panel = document.getElementById('a11yPanel');
+  const navHost = document.getElementById('navA11y');
+  const mobileHost = document.getElementById('mobileA11y');
   const closeBtn = document.getElementById('a11yClose');
   const resetBtn = document.getElementById('a11yReset');
   const toggleBtns = document.querySelectorAll('[data-a11y-toggle]');
   const fontStepBtns = document.querySelectorAll('[data-a11y-fontstep]');
   const fontResetBtn = document.querySelector('[data-a11y-fontreset]');
 
-  if(!toggle || !panel) return;
+  if(!toggles.length || !panel) return;
 
   const TOGGLE_KEYS = ['contrast', 'grayscale', 'underline-links', 'readable-font', 'spacing', 'pause-anim', 'big-cursor'];
   const FONT_CLASSES = ['a11y-fs-1', 'a11y-fs-2', 'a11y-fs-3'];
@@ -64,29 +66,44 @@
     TOGGLE_KEYS.forEach(key => applyToggle(key, !!state.toggles[key]));
   }
 
+  function activeToggle(){
+    return toggles.find(t => t.parentNode === panel.parentNode) || toggles[0];
+  }
+
   function openPanel(){
     panel.hidden = false;
-    toggle.setAttribute('aria-expanded', 'true');
-    document.addEventListener('keydown', onKeydown);
+    activeToggle().setAttribute('aria-expanded', 'true');
+    document.addEventListener('keydown', onKeydown, true);
     document.addEventListener('click', onOutsideClick, true);
   }
   function closePanel(){
     panel.hidden = true;
-    toggle.setAttribute('aria-expanded', 'false');
-    document.removeEventListener('keydown', onKeydown);
+    toggles.forEach(t => t.setAttribute('aria-expanded', 'false'));
+    document.removeEventListener('keydown', onKeydown, true);
     document.removeEventListener('click', onOutsideClick, true);
   }
   function onKeydown(e){
-    if(e.key === 'Escape'){ closePanel(); toggle.focus(); }
+    if(e.key === 'Escape'){ e.stopPropagation(); activeToggle().focus(); closePanel(); }
   }
   function onOutsideClick(e){
-    if(!panel.contains(e.target) && e.target !== toggle){ closePanel(); }
+    if(!panel.contains(e.target) && !toggles.some(t => t.contains(e.target))){ closePanel(); }
   }
 
-  toggle.addEventListener('click', () => {
+  toggles.forEach(t => t.addEventListener('click', () => {
     if(panel.hidden) openPanel(); else closePanel();
-  });
-  closeBtn && closeBtn.addEventListener('click', () => { closePanel(); toggle.focus(); });
+  }));
+  closeBtn && closeBtn.addEventListener('click', () => { activeToggle().focus(); closePanel(); });
+
+  const desktopQuery = window.matchMedia('(min-width: 900px)');
+  function placePanel(){
+    const host = desktopQuery.matches ? navHost : mobileHost;
+    if(!host || panel.parentNode === host) return;
+    if(!panel.hidden) closePanel();
+    host.appendChild(panel);
+  }
+  if(desktopQuery.addEventListener) desktopQuery.addEventListener('change', placePanel);
+  else desktopQuery.addListener(placePanel);
+  placePanel();
 
   fontStepBtns.forEach(btn => {
     btn.addEventListener('click', () => {
