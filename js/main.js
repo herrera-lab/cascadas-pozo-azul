@@ -108,7 +108,23 @@ keepHeroVideoPlaying('.hero-photo', '(min-width: 769px)');
 
 function syncDatePlaceholder(input){
   const wrap = input.closest('.date-wrap');
-  if(wrap) wrap.classList.toggle('has-value', !!input.value);
+  if(!wrap) return;
+  const text = $('.date-text', wrap);
+  if(!text.dataset.placeholder) text.dataset.placeholder = text.textContent.trim();
+  const [y, m, d] = (input.value || '').split('-');
+  wrap.classList.toggle('has-value', !!input.value);
+  text.textContent = input.value ? `${d}/${m}/${y}` : text.dataset.placeholder;
+}
+
+function initDatePicker(input){
+  syncDatePlaceholder(input);
+  input.addEventListener('input', () => syncDatePlaceholder(input));
+  input.addEventListener('change', () => syncDatePlaceholder(input));
+  input.addEventListener('click', () => {
+    if(window.matchMedia('(pointer: fine)').matches && input.showPicker){
+      try{ input.showPicker(); }catch(e){}
+    }
+  });
 }
 
 function formatCRC(n){ return '₡' + Math.round(n).toLocaleString('es-CR'); }
@@ -211,7 +227,7 @@ function renderCabins(){
                   <input type="date" id="checkin-${cabin.id}" data-cabin-input="${cabin.id}" data-role="checkin">
                   <span class="date-placeholder" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                    dd/mm/aaaa
+                    <span class="date-text">dd/mm/aaaa</span>
                   </span>
                 </div>
                 <p class="field-error"></p>
@@ -222,7 +238,7 @@ function renderCabins(){
                   <input type="date" id="checkout-${cabin.id}" data-cabin-input="${cabin.id}" data-role="checkout">
                   <span class="date-placeholder" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                    dd/mm/aaaa
+                    <span class="date-text">dd/mm/aaaa</span>
                   </span>
                 </div>
                 <p class="field-error"></p>
@@ -320,12 +336,8 @@ function renderCabins(){
 
   $$('[data-cabin-input]').forEach(input => {
     input.min = todayStr();
-    syncDatePlaceholder(input);
-    input.addEventListener('input', () => syncDatePlaceholder(input));
-    input.addEventListener('change', () => {
-      syncDatePlaceholder(input);
-      updateCabinCalc(input.getAttribute('data-cabin-input'));
-    });
+    initDatePicker(input);
+    input.addEventListener('change', () => updateCabinCalc(input.getAttribute('data-cabin-input')));
   });
 
   CONFIG.cabins.forEach(cabin => {
@@ -477,6 +489,7 @@ function initTickets(){
   $('#stepperAdultPrice').textContent = `${formatCRC(T.adult.crc)} c/u`;
   $('#stepperChildPrice').textContent = `${formatCRC(T.child.crc)} c/u`;
   $('#ticketDate').min = todayStr();
+  initDatePicker($('#ticketDate'));
 
   function calc(){
     const adults = parseInt($('#ticketAdults').textContent);
