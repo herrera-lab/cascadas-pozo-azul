@@ -147,7 +147,7 @@ function waLink(message){
   return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
-const BOOKINGS_API_URL = 'https://script.google.com/macros/s/AKfycby36Ml0BqiO6nG9-nQ2YkI29uKSSGj_T7TNCo4fLgIPy2nTWuiKU3KR1nIx43Bnmnr-/exec';
+const BOOKINGS_API_URL = 'https://script.google.com/macros/s/AKfycbwj7SYiWB7zFu66XAnqlMLBDsAO7XFbD05xazsMY14hrGZ6qBNUBxkV_N81alEafIO2/exec';
 
 if(location.protocol === 'file:'){
   console.warn('[PozoAzul] Estás abriendo el sitio como archivo local (file://). Los navegadores bloquean fetch() hacia URLs remotas desde file://, así que la consulta de disponibilidad NUNCA va a llegar a script.google.com. Serví esta carpeta con un servidor local (por ejemplo la extensión "Live Server" de VS Code, o "npx serve") y abrí el sitio como http://localhost/... en vez de doble clic al archivo.');
@@ -179,7 +179,7 @@ async function saveBookings(entry){
   }
 }
 
-const ENTRADAS_API_URL = 'https://script.google.com/macros/s/AKfycbyaXDbMOpMv4ozoXehKMV_5p91s-TttLh57nNciEbvMyS5mcg0HV9mYlSVnsCqNivsQ/exec';
+const ENTRADAS_API_URL = BOOKINGS_API_URL;
 
 // Registro "dispara y olvida": nunca debe bloquear ni retrasar la apertura de WhatsApp
 function registrarEntrada(fecha, adultos, ninos){
