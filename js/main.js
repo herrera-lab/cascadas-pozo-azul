@@ -5,34 +5,36 @@ const CONFIG = {
   cabins: [
     {
       id: 'dos-pisos',
-      name: 'Cabaña Guaria Morada',
+      name: 'Cabaña Heliconia',
       tagline: 'La más amplia: dos niveles con vista al bosque, ideal para grupos y familias',
       capacity: 6,
       couplePrice: 35000,
       perPersonPrice: 15000,
       amenities: ['wifi','view','hotwater','parking','kitchen'],
       images: [
-        { src: 'imagenes/cabañaGuaria/1.webp', alt: 'Vista exterior de la Cabaña Guaria Morada' },
-        { src: 'imagenes/cabañaGuaria/2.webp', alt: 'Cabañas Heliconia y Guaria Morada' },
-        { src: 'imagenes/cabañaGuaria/3.webp', alt: 'Balcón con vista panorámica' },
-        { src: 'imagenes/cabañaGuaria/4.webp', alt: 'Interior con cocina equipada y dormitorio' }
+        { src: 'imagenes/cabana-heliconia/1.webp', alt: 'Vista exterior de la Cabaña Heliconia' },
+        { src: 'imagenes/cabana-heliconia/2.webp', alt: 'Cabañas Heliconia y Guaria Morada' },
+        { src: 'imagenes/cabana-heliconia/3.webp', alt: 'Balcón con vista panorámica' },
+        { src: 'imagenes/cabana-heliconia/4.webp', alt: 'Interior con cocina equipada y dormitorio' }
       ]
     },
     {
       id: 'pequena',
-      name: 'Cabaña Heliconia',
+      name: 'Cabaña Guaria Morada',
       tagline: 'Acogedora y tranquila, perfecta para una escapada corta',
       capacity: 4,
       couplePrice: 30000,
       perPersonPrice: 15000,
       amenities: ['wifi','view','hotwater','parking','kitchen'],
       images: [
-        { src: 'imagenes/cabañaHeliconia/1.webp', alt: 'Vista exterior de la Cabaña Heliconia' },
-        { src: 'imagenes/cabañaHeliconia/2.webp', alt: 'Cocina equipada' },
-        { src: 'imagenes/cabañaHeliconia/3.webp', alt: 'Dormitorio con camarote' },
-        { src: 'imagenes/cabañaHeliconia/4.webp', alt: 'Baño privado' },
-        { src: 'imagenes/cabañaHeliconia/5.webp', alt: 'Camas y camarote' },
-        { src: 'imagenes/cabañaHeliconia/6.webp', alt: 'Sala, cocina y entrada' }
+        { src: 'imagenes/cabana-guaria-morada/1.webp', alt: 'Vista exterior de la Cabaña Guaria Morada' },
+        { src: 'imagenes/cabana-guaria-morada/entrada.webp', alt: 'Vista desde la entrada: sala, cocina y comedor' },
+        { src: 'imagenes/cabana-guaria-morada/interior.webp', alt: 'Interior con sofá, cama y camarote' },
+        { src: 'imagenes/cabana-guaria-morada/dormitorio.webp', alt: 'Cama matrimonial con camarote' },
+        { src: 'imagenes/cabana-guaria-morada/cocina.webp', alt: 'Cocina equipada con plantilla y refrigeradora' },
+        { src: 'imagenes/cabana-guaria-morada/ventana.webp', alt: 'Comedor con vista a los potreros' },
+        { src: 'imagenes/cabana-guaria-morada/bano.webp', alt: 'Baño privado' },
+        { src: 'imagenes/cabana-guaria-morada/ducha.webp', alt: 'Ducha con agua caliente' }
       ]
     }
   ],
@@ -306,6 +308,18 @@ function renderCabins(){
     }
     $$('.gallery-nav', gal).forEach(btn => btn.addEventListener('click', () => show(idx + parseInt(btn.dataset.gnav))));
     dots.forEach((d,n) => d.addEventListener('click', () => show(n)));
+
+    // Deslizar con el dedo en celulares
+    let startX = 0, startY = 0;
+    gal.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    gal.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      if(Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(idx + (dx < 0 ? 1 : -1));
+    }, { passive: true });
   });
 
   $$('[data-toggle]').forEach(btn => {

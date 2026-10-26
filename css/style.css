@@ -278,14 +278,14 @@ section{padding:96px 0;}
   display:flex;flex-direction:column;
 }
 .cabin-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px);}
-.cabin-gallery{position:relative;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,var(--forest),var(--turquoise-deep));}
+.cabin-gallery{position:relative;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,var(--forest),var(--turquoise-deep));touch-action:pan-y;}
 .cabin-slide{
   position:absolute;inset:0;opacity:0;transition:opacity .5s ease;
 }
 .cabin-slide.active{opacity:1;}
 .cabin-slide img{width:100%;height:100%;object-fit:cover;}
 .gallery-dots{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:center;z-index:2;}
-.gallery-dots button{display:flex;align-items:center;justify-content:center;width:44px;height:44px;}
+.gallery-dots button{display:flex;align-items:center;justify-content:center;flex:0 1 44px;min-width:0;height:44px;}
 .gallery-dots button::before{content:'';width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.5);transition:background .2s, width .2s;}
 .gallery-dots button.active::before{background:var(--white);width:20px;border-radius:4px;}
 .gallery-nav{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;background:rgba(255,255,255,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--forest);z-index:2;transition:background .2s;}
@@ -383,7 +383,6 @@ section{padding:96px 0;}
 .tarifas-edad__list{list-style:none;display:flex;flex-direction:column;gap:8px;}
 .tarifas-edad__item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;background:var(--white);border-radius:var(--radius-sm);box-shadow:0 2px 8px -4px rgba(15,61,46,.18);font-size:.9rem;}
 .tarifas-edad__who{display:flex;align-items:center;gap:10px;color:var(--ink);min-width:0;}
-.tarifas-edad__icon{display:flex;align-items:center;justify-content:center;width:32px;height:32px;flex-shrink:0;border-radius:50%;background:var(--turquoise-pale);font-size:1rem;line-height:1;}
 .tarifas-edad__badge{flex-shrink:0;font-weight:700;color:var(--forest);white-space:nowrap;}
 .tarifas-edad__badge--free{padding:4px 10px;border-radius:999px;background:#DFF3E4;color:#1E6B3A;font-size:.74rem;letter-spacing:.08em;}
 .tarifas-edad__badge--adult{font-weight:600;color:var(--ink-soft);font-size:.84rem;}
@@ -410,7 +409,7 @@ section{padding:96px 0;}
 @media(min-width:900px){.info-pozo__grid{grid-template-columns:repeat(3,1fr);gap:14px;}}
 .info-pozo__card{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--sand);border-radius:var(--radius-md);transition:transform .25s ease, box-shadow .25s ease;}
 .info-pozo__card:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft);}
-.info-pozo__icon{display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0;border-radius:50%;background:var(--white);font-size:1.3rem;line-height:1;}
+.info-pozo__icon{display:flex;align-items:center;justify-content:center;width:36px;height:36px;flex-shrink:0;border-radius:50%;background:var(--white);font-size:1.05rem;line-height:1;}
 .info-pozo__card-text{display:flex;flex-direction:column;gap:2px;min-width:0;}
 .info-pozo__card-text strong{font-size:.98rem;font-weight:700;line-height:1.3;}
 .info-pozo__card-text small{font-size:.84rem;color:var(--ink-soft);}
@@ -711,6 +710,7 @@ html.a11y-contrast .float-wa{
   .section-head h2{font-size:clamp(1.5rem,6.4vw,2rem);}
   .section-head p{font-size:.92rem;}
 
+  .cabin-gallery{aspect-ratio:1/1;}
   .cabin-body{padding:22px 20px 24px;}
   .cabin-title-row{flex-wrap:wrap;}
   .cabin-title-row .price{text-align:left;}

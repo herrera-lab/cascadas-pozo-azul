@@ -2,3 +2,25 @@ Thumbs.db
 desktop.ini
 .DS_Store
 *.tmp
+
+# Secretos y configuración local
+.env
+.env.*
+!.env.example
+
+# Respaldos, notas y pruebas
+*.bak
+*.old
+*.orig
+*~
+*.log
+notas*
+*.zip
+test*/
+prueba*
+
+# Dependencias y builds
+node_modules/
+dist/
+.netlify/
+.vscode/
