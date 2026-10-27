@@ -8,3 +8,15 @@
   to = "/404"
   status = 404
   force = true
+
+[[redirects]]
+  from = "/functions/*"
+  to = "/404"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/build.sh"
+  to = "/404"
+  status = 404
+  force = true
