@@ -15,7 +15,8 @@ const CONFIG = {
         { src: 'imagenes/cabana-heliconia/1.webp', alt: 'Vista exterior de la Cabaña Heliconia' },
         { src: 'imagenes/cabana-heliconia/2.webp', alt: 'Cabañas Heliconia y Guaria Morada' },
         { src: 'imagenes/cabana-heliconia/3.webp', alt: 'Balcón con vista panorámica' },
-        { src: 'imagenes/cabana-heliconia/4.webp', alt: 'Interior con cocina equipada y dormitorio' }
+        { src: 'imagenes/cabana-heliconia/4.webp', alt: 'Interior con cocina equipada y dormitorio' },
+        { src: 'imagenes/cabana-heliconia/dormitorio.webp', alt: 'Dormitorio con cama matrimonial' }
       ]
     },
     {
@@ -149,10 +150,11 @@ function waLink(message){
   return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
-const BOOKINGS_API_URL = 'https://script.google.com/macros/s/AKfycbwj7SYiWB7zFu66XAnqlMLBDsAO7XFbD05xazsMY14hrGZ6qBNUBxkV_N81alEafIO2/exec';
+// Función del servidor (netlify/functions/reservas.mjs) que reenvía al Apps Script
+const BOOKINGS_API_URL = '/api/reservas';
 
 if(location.protocol === 'file:'){
-  console.warn('[PozoAzul] Estás abriendo el sitio como archivo local (file://). Los navegadores bloquean fetch() hacia URLs remotas desde file://, así que la consulta de disponibilidad NUNCA va a llegar a script.google.com. Serví esta carpeta con un servidor local (por ejemplo la extensión "Live Server" de VS Code, o "npx serve") y abrí el sitio como http://localhost/... en vez de doble clic al archivo.');
+  console.warn('[PozoAzul] Estás abriendo el sitio como archivo local (file://). La consulta de disponibilidad pasa por una función del servidor, así que solo funciona en el sitio publicado o con "netlify dev".');
 }
 
 async function getBookings(){
