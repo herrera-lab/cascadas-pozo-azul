@@ -5,6 +5,6 @@ set -e
 
 rm -rf dist
 mkdir dist
-cp -r index.html _headers css js hero imagenes dist/
+cp -r index.html _headers robots.txt sitemap.xml css js hero imagenes dist/
 
 echo "Sitio listo en dist/"
