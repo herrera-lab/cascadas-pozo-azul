@@ -78,11 +78,16 @@ async function leerReservas(){
   const res = await fetch(url, { cache: 'no-store' });
   if(!res.ok) return json({ error: 'No se pudo consultar la disponibilidad' }, 502);
   const data = await res.json();
+  // Si el Apps Script rechaza la clave responde 200 con { ok:false }: nunca mostrarlo como "todo libre"
+  if(!data || !data.cabins || typeof data.cabins !== 'object'){
+    console.error('[reservas] Respuesta inesperada del Apps Script:', data && data.error);
+    return json({ error: 'No se pudo consultar la disponibilidad' }, 502);
+  }
 
   // Solo fechas: cualquier otro dato (nombres, teléfonos…) nunca llega al navegador
   const cabins = {};
   for(const id of Object.keys(CABANAS)){
-    const lista = (data && data.cabins && Array.isArray(data.cabins[id])) ? data.cabins[id] : [];
+    const lista = Array.isArray(data.cabins[id]) ? data.cabins[id] : [];
     cabins[id] = lista.map(b => ({ checkin: String(b.checkin || ''), checkout: String(b.checkout || '') }));
   }
   return json({ cabins });
@@ -119,6 +124,11 @@ async function guardar(req){
     body: JSON.stringify(limpio)
   });
   if(!res.ok) return json({ error: 'No se pudo registrar' }, 502);
+  const resultado = await res.json().catch(() => null);
+  if(!resultado || resultado.ok !== true){
+    console.error('[reservas] El Apps Script no registró:', resultado && resultado.error);
+    return json({ error: 'No se pudo registrar' }, 502);
+  }
   return json({ ok: true });
 }
 
