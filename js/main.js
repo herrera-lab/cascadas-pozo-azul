@@ -150,11 +150,11 @@ function waLink(message){
   return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
-// Función del servidor (netlify/functions/reservas.mjs) que reenvía al Apps Script
+// Función del servidor (functions/api/reservas.js) que reenvía al Apps Script
 const BOOKINGS_API_URL = '/api/reservas';
 
 if(location.protocol === 'file:'){
-  console.warn('[PozoAzul] Estás abriendo el sitio como archivo local (file://). La consulta de disponibilidad pasa por una función del servidor, así que solo funciona en el sitio publicado o con "netlify dev".');
+  console.warn('[PozoAzul] Estás abriendo el sitio como archivo local (file://). La consulta de disponibilidad pasa por una función del servidor, así que solo funciona en el sitio publicado o con "npx wrangler pages dev".');
 }
 
 async function getBookings(){

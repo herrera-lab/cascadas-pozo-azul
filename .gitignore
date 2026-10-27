@@ -22,5 +22,5 @@ prueba*
 # Dependencias y builds
 node_modules/
 dist/
-.netlify/
+.wrangler/
 .vscode/
