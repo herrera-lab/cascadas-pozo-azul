@@ -669,29 +669,6 @@ html.a11y-big-cursor *{
   cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24'><path d='M4 2 L4 20 L9 16 L12 22 L15 20.5 L12 14.5 L18 14.5 Z' fill='black' stroke='white' stroke-width='1.2'/></svg>") 4 4, auto !important;
 }
 
-html.a11y-contrast body{background:#000 !important;color:#fff !important;}
-html.a11y-contrast .hero{background:#000 !important;}
-html.a11y-contrast .hero::after{background:rgba(0,0,0,.55) !important;}
-html.a11y-contrast .hero-video{filter:grayscale(.3) contrast(1.2) !important;}
-html.a11y-contrast *{
-  background-color:transparent !important;
-  border-color:#fff !important;
-  box-shadow:none !important;
-  text-shadow:none !important;
-  color:#fff !important;
-}
-html.a11y-contrast img,
-html.a11y-contrast video,
-html.a11y-contrast svg{filter:contrast(1.1) !important;opacity:1 !important;}
-html.a11y-contrast a,
-html.a11y-contrast .btn,
-html.a11y-contrast button{color:#FFD500 !important;}
-html.a11y-contrast .btn-primary,
-html.a11y-contrast .whatsapp-btn,
-html.a11y-contrast .float-wa{
-  background:#000 !important;border:2px solid #FFD500 !important;
-}
-
 @media (max-width:520px){
   .float-wa{width:52px;height:52px;bottom:calc(16px + env(safe-area-inset-bottom, 0px));right:calc(16px + env(safe-area-inset-right, 0px));}
   .float-wa::before{animation-name:pulse-sm;}

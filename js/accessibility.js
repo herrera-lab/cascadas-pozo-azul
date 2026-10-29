@@ -14,7 +14,7 @@
 
   if(!toggles.length || !panel) return;
 
-  const TOGGLE_KEYS = ['contrast', 'grayscale', 'underline-links', 'readable-font', 'spacing', 'pause-anim', 'big-cursor'];
+  const TOGGLE_KEYS = ['grayscale', 'underline-links', 'readable-font', 'spacing', 'pause-anim', 'big-cursor'];
   const FONT_CLASSES = ['a11y-fs-1', 'a11y-fs-2', 'a11y-fs-3'];
 
   let state = { fontStep: 0, toggles: {} };
